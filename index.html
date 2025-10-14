@@ -787,8 +787,8 @@
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            opacity: 0;
-            transform: translateY(30px);
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .project-card.animate {
@@ -1422,7 +1422,7 @@
                         <div class="code-output" id="output-customer-segmentation">
                             <div class="output-section">
                                 <div class="output-title">Execution Output</div>
-                                <div class="output-content">Click "Run Code" to see the execution results...</div>
+                                <div class="output-content">Code will run automatically in 3 seconds...</div>
                             </div>
                         </div>
                     </div>
@@ -1442,7 +1442,7 @@
                         <div class="code-output" id="output-sales-forecasting">
                             <div class="output-section">
                                 <div class="output-title">Execution Output</div>
-                                <div class="output-content">Click "Run Code" to see the execution results...</div>
+                                <div class="output-content">Code will run automatically in 3 seconds...</div>
                             </div>
                         </div>
                     </div>
@@ -1462,7 +1462,7 @@
                         <div class="code-output" id="output-sentiment-analysis">
                             <div class="output-section">
                                 <div class="output-title">Execution Output</div>
-                                <div class="output-content">Click "Run Code" to see the execution results...</div>
+                                <div class="output-content">Code will run automatically in 3 seconds...</div>
                             </div>
                         </div>
                     </div>
@@ -1765,57 +1765,46 @@
                 this.classList.add('active');
                 const tabId = this.getAttribute('data-tab');
                 document.getElementById(tabId).classList.add('active');
+                
+                // Auto-run code for the active tab after a short delay
+                setTimeout(() => {
+                    runCodeAutomatically(tabId);
+                }, 500);
             });
         });
 
         // Code execution functionality
         const codeExamples = {
             'customer-segmentation': {
-                code: `# Import necessary libraries
-import pandas as pd
-import numpy as np
-from sklearn.cluster import KMeans
-from sklearn.preprocessing import StandardScaler
-import matplotlib.pyplot as plt
+                code: `<span class="code-comment"># Import necessary libraries</span>
+<span class="code-keyword">import</span> pandas <span class="code-keyword">as</span> pd
+<span class="code-keyword">import</span> numpy <span class="code-keyword">as</span> np
+<span class="code-keyword">from</span> sklearn.cluster <span class="code-keyword">import</span> KMeans
+<span class="code-keyword">from</span> sklearn.preprocessing <span class="code-keyword">import</span> StandardScaler
 
-# Load customer data
-<span class="code-comment"># Simulating customer data for demonstration</span>
-np.random.seed(42)
-n_customers = 300
+<span class="code-comment"># Load customer data</span>
+np.random.seed(<span class="code-number">42</span>)
+n_customers = <span class="code-number">300</span>
 customer_data = pd.DataFrame({
-    'age': np.random.randint(18, 70, n_customers),
-    'annual_income': np.random.randint(20000, 150000, n_customers),
-    'spending_score': np.random.randint(1, 100, n_customers)
+    <span class="code-string">'age'</span>: np.random.randint(<span class="code-number">18</span>, <span class="code-number">70</span>, n_customers),
+    <span class="code-string">'annual_income'</span>: np.random.randint(<span class="code-number">20000</span>, <span class="code-number">150000</span>, n_customers),
+    <span class="code-string">'spending_score'</span>: np.random.randint(<span class="code-number">1</span>, <span class="code-number">100</span>, n_customers)
 })
-
-<span class="code-comment"># Display first few rows of data</span>
-print("Customer Data Sample:")
-print(customer_data.head())
 
 <span class="code-comment"># Standardize the data</span>
 scaler = StandardScaler()
 scaled_data = scaler.fit_transform(customer_data)
 
 <span class="code-comment"># Apply K-Means clustering</span>
-kmeans = KMeans(n_clusters=4, random_state=42)
+kmeans = KMeans(n_clusters=<span class="code-number">4</span>, random_state=<span class="code-number">42</span>)
 clusters = kmeans.fit_predict(scaled_data)
 
 <span class="code-comment"># Add cluster labels to original data</span>
-customer_data['cluster'] = clusters
+customer_data[<span class="code-string">'cluster'</span>] = clusters
 
 <span class="code-comment"># Display cluster sizes</span>
-print("\\nCluster Distribution:")
-print(customer_data['cluster'].value_counts().sort_index())
-
-<span class="code-comment"># Calculate cluster characteristics</span>
-cluster_summary = customer_data.groupby('cluster').agg({
-    'age': 'mean',
-    'annual_income': 'mean', 
-    'spending_score': 'mean'
-}).round(2)
-
-print("\\nCluster Characteristics:")
-print(cluster_summary)`,
+<span class="code-function">print</span>(<span class="code-string">"Cluster Distribution:"</span>)
+<span class="code-function">print</span>(customer_data[<span class="code-string">'cluster'</span>].value_counts().sort_index())`,
                 output: `<div class="output-section">
     <div class="output-title">Data Sample</div>
     <div class="output-content">
@@ -1872,52 +1861,39 @@ print(cluster_summary)`,
 </div>`
             },
             'sales-forecasting': {
-                code: `# Sales Forecasting with ARIMA
-import pandas as pd
-import numpy as np
-from statsmodels.tsa.arima.model import ARIMA
-import matplotlib.pyplot as plt
+                code: `<span class="code-comment"># Sales Forecasting with ARIMA</span>
+<span class="code-keyword">import</span> pandas <span class="code-keyword">as</span> pd
+<span class="code-keyword">import</span> numpy <span class="code-keyword">as</span> np
+<span class="code-keyword">from</span> statsmodels.tsa.arima.model <span class="code-keyword">import</span> ARIMA
 
 <span class="code-comment"># Generate sample sales data</span>
-np.random.seed(123)
-dates = pd.date_range(start='2020-01-01', end='2023-12-31', freq='M')
-n_periods = len(dates)
+np.random.seed(<span class="code-number">123</span>)
+dates = pd.date_range(start=<span class="code-string">'2020-01-01'</span>, end=<span class="code-string">'2023-12-31'</span>, freq=<span class="code-string">'M'</span>)
+n_periods = <span class="code-function">len</span>(dates)
 
 <span class="code-comment"># Create trend and seasonality</span>
-trend = np.linspace(100, 300, n_periods)
-seasonality = 50 * np.sin(2 * np.pi * np.arange(n_periods) / 12)
-noise = np.random.normal(0, 20, n_periods)
+trend = np.linspace(<span class="code-number">100</span>, <span class="code-number">300</span>, n_periods)
+seasonality = <span class="code-number">50</span> * np.sin(<span class="code-number">2</span> * np.pi * np.arange(n_periods) / <span class="code-number">12</span>)
+noise = np.random.normal(<span class="code-number">0</span>, <span class="code-number">20</span>, n_periods)
 
 sales = trend + seasonality + noise
 sales_data = pd.DataFrame({
-    'date': dates,
-    'sales': sales
+    <span class="code-string">'date'</span>: dates,
+    <span class="code-string">'sales'</span>: sales
 })
 
-<span class="code-comment"># Display data summary</span>
-print("Sales Data Summary:")
-print(f"Time Period: {sales_data['date'].min()} to {sales_data['date'].max()}")
-print(f"Total Sales Records: {len(sales_data)}")
-print(f"Average Monthly Sales: ${sales_data['sales'].mean():.2f}")
-
 <span class="code-comment"># Fit ARIMA model</span>
-model = ARIMA(sales_data['sales'], order=(2,1,2))
+model = ARIMA(sales_data[<span class="code-string">'sales'</span>], order=(<span class="code-number">2</span>,<span class="code-number">1</span>,<span class="code-number">2</span>))
 model_fit = model.fit()
 
 <span class="code-comment"># Make forecasts</span>
-forecast_steps = 12
+forecast_steps = <span class="code-number">12</span>
 forecast = model_fit.forecast(steps=forecast_steps)
-forecast_index = pd.date_range(start='2024-01-01', periods=forecast_steps, freq='M')
 
 <span class="code-comment"># Display forecast results</span>
-print("\\nSales Forecast for 2024:")
-for i, (date, value) in enumerate(zip(forecast_index, forecast)):
-    print(f"{date.strftime('%B %Y')}: ${value:.2f}")
-
-<span class="code-comment"># Calculate forecast accuracy metrics</span>
-print(f"\\nModel Performance:")
-print(f"AIC: {model_fit.aic:.2f}")
-print(f"BIC: {model_fit.bic:.2f}")`,
+<span class="code-function">print</span>(<span class="code-string">"Sales Forecast for 2024:"</span>)
+<span class="code-keyword">for</span> i, value <span class="code-keyword">in</span> <span class="code-function">enumerate</span>(forecast):
+    <span class="code-function">print</span>(<span class="code-string">f"Month {i+1}: ${value:.2f}"</span>)`,
                 output: `<div class="output-section">
     <div class="output-title">Sales Data Summary</div>
     <div class="output-content">
@@ -1972,67 +1948,49 @@ print(f"BIC: {model_fit.bic:.2f}")`,
 </div>`
             },
             'sentiment-analysis': {
-                code: `# Sentiment Analysis of Customer Reviews
-import pandas as pd
-from textblob import TextBlob
-import matplotlib.pyplot as plt
+                code: `<span class="code-comment"># Sentiment Analysis of Customer Reviews</span>
+<span class="code-keyword">import</span> pandas <span class="code-keyword">as</span> pd
+<span class="code-keyword">from</span> textblob <span class="code-keyword">import</span> TextBlob
 
 <span class="code-comment"># Sample customer reviews</span>
 reviews = [
-    "This product is amazing! It exceeded all my expectations.",
-    "Poor quality and terrible customer service. Very disappointed.",
-    "Good value for money but could be improved.",
-    "Absolutely love it! Best purchase I've made this year.",
-    "The product arrived damaged and the return process was frustrating.",
-    "Average product, nothing special but gets the job done.",
-    "Outstanding quality and fast shipping. Highly recommended!",
-    "Not worth the price. I regret buying this product.",
-    "Good product with some minor issues that need fixing.",
-    "Excellent customer service and the product works perfectly."
+    <span class="code-string">"This product is amazing! It exceeded all my expectations."</span>,
+    <span class="code-string">"Poor quality and terrible customer service. Very disappointed."</span>,
+    <span class="code-string">"Good value for money but could be improved."</span>,
+    <span class="code-string">"Absolutely love it! Best purchase I've made this year."</span>,
+    <span class="code-string">"The product arrived damaged and the return process was frustrating."</span>
 ]
 
 <span class="code-comment"># Perform sentiment analysis</span>
 results = []
-for review in reviews:
+<span class="code-keyword">for</span> review <span class="code-keyword">in</span> reviews:
     blob = TextBlob(review)
     sentiment = blob.sentiment
     results.append({
-        'review': review,
-        'polarity': sentiment.polarity,
-        'subjectivity': sentiment.subjectivity
+        <span class="code-string">'review'</span>: review,
+        <span class="code-string">'polarity'</span>: sentiment.polarity,
+        <span class="code-string">'subjectivity'</span>: sentiment.subjectivity
     })
 
 <span class="code-comment"># Create DataFrame with results</span>
 df = pd.DataFrame(results)
 
 <span class="code-comment"># Classify sentiment based on polarity</span>
-def classify_sentiment(polarity):
-    if polarity > 0.1:
-        return 'Positive'
-    elif polarity < -0.1:
-        return 'Negative'
-    else:
-        return 'Neutral'
+<span class="code-keyword">def</span> <span class="code-function">classify_sentiment</span>(polarity):
+    <span class="code-keyword">if</span> polarity > <span class="code-number">0.1</span>:
+        <span class="code-keyword">return</span> <span class="code-string">'Positive'</span>
+    <span class="code-keyword">elif</span> polarity < -<span class="code-number">0.1</span>:
+        <span class="code-keyword">return</span> <span class="code-string">'Negative'</span>
+    <span class="code-keyword">else</span>:
+        <span class="code-keyword">return</span> <span class="code-string">'Neutral'</span>
 
-df['sentiment'] = df['polarity'].apply(classify_sentiment)
+df[<span class="code-string">'sentiment'</span>] = df[<span class="code-string">'polarity'</span>].apply(classify_sentiment)
 
 <span class="code-comment"># Display results</span>
-print("Sentiment Analysis Results:")
-print(f"Total Reviews: {len(df)}")
-print(f"Positive Reviews: {len(df[df['sentiment'] == 'Positive'])}")
-print(f"Negative Reviews: {len(df[df['sentiment'] == 'Negative'])}")
-print(f"Neutral Reviews: {len(df[df['sentiment'] == 'Neutral'])}")
-
-<span class="code-comment"># Calculate average scores</span>
-print(f"\\nAverage Polarity: {df['polarity'].mean():.3f}")
-print(f"Average Subjectivity: {df['subjectivity'].mean():.3f}")
-
-<span class="code-comment"># Show sample classified reviews</span>
-print("\\nSample Classified Reviews:")
-for i, row in df.head(3).iterrows():
-    print(f"Review: {row['review'][:50]}...")
-    print(f"Sentiment: {row['sentiment']} (Polarity: {row['polarity']:.3f})")
-    print("---")`,
+<span class="code-function">print</span>(<span class="code-string">"Sentiment Analysis Results:"</span>)
+<span class="code-function">print</span>(<span class="code-string">f"Positive Reviews: {len(df[df['sentiment'] == 'Positive'])}"</span>)
+<span class="code-function">print</span>(<span class="code-string">f"Negative Reviews: {len(df[df['sentiment'] == 'Negative'])}"</span>)
+<span class="code-function">print</span>(<span class="code-string">f"Neutral Reviews: {len(df[df['sentiment'] == 'Neutral'])}"</span>)`,
                 output: `<div class="output-section">
     <div class="output-title">Sentiment Analysis Summary</div>
     <div class="output-content">
@@ -2102,24 +2060,36 @@ for i, row in df.head(3).iterrows():
             }
         }
 
-        // Run code functionality
+        // Auto-run code functionality
+        function runCodeAutomatically(codeType) {
+            const outputContainer = document.getElementById(`output-${codeType}`);
+            
+            // Show loading state
+            outputContainer.innerHTML = '<div class="output-section"><div class="output-title">Executing Code...</div><div class="output-content">Running analysis, please wait...</div></div>';
+            
+            // Simulate code execution with delay
+            setTimeout(() => {
+                outputContainer.innerHTML = codeExamples[codeType].output;
+            }, 2000);
+        }
+
+        // Run code functionality for manual button clicks
         document.querySelectorAll('.run-button').forEach(button => {
             button.addEventListener('click', function() {
                 const codeType = this.getAttribute('data-code');
-                const outputContainer = document.getElementById(`output-${codeType}`);
-                
-                // Show loading state
-                outputContainer.innerHTML = '<div class="output-section"><div class="output-title">Executing Code...</div><div class="output-content">Running analysis, please wait...</div></div>';
-                
-                // Simulate code execution with delay
-                setTimeout(() => {
-                    outputContainer.innerHTML = codeExamples[codeType].output;
-                }, 1500);
+                runCodeAutomatically(codeType);
             });
         });
 
-        // Initialize when page loads
-        window.addEventListener('load', initializeCodeExamples);
+        // Auto-run code for the first tab when page loads
+        window.addEventListener('load', function() {
+            initializeCodeExamples();
+            
+            // Auto-run the first code example after page loads
+            setTimeout(() => {
+                runCodeAutomatically('customer-segmentation');
+            }, 3000);
+        });
     </script>
 </body>
 </html>
