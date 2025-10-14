@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alex Morgan | Data Analyst Portfolio</title>
+    <title>Weldon Kipkurui Langat | Data Analyst Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Base Styles */
@@ -27,6 +27,7 @@
             line-height: 1.6;
             color: var(--dark);
             background-color: #f9f9f9;
+            overflow-x: hidden;
         }
         
         .container {
@@ -111,6 +112,12 @@
             width: 100%;
             top: 0;
             z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
         
         nav {
@@ -118,6 +125,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 0;
+            transition: all 0.3s ease;
         }
         
         .logo {
@@ -144,6 +152,22 @@
             color: var(--dark);
             font-weight: 500;
             transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
         }
         
         .nav-links a:hover {
@@ -161,12 +185,37 @@
             background: linear-gradient(135deg, var(--primary) 0%, #1a2530 100%);
             color: white;
             padding: 150px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: pulse 15s infinite linear;
+            z-index: 1;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
         
         .hero-content {
             display: flex;
             align-items: center;
             gap: 50px;
+            position: relative;
+            z-index: 2;
         }
         
         .hero-text {
@@ -176,6 +225,60 @@
         .hero h1 {
             color: white;
             margin-bottom: 20px;
+            overflow: hidden;
+            border-right: 3px solid white;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: white }
+        }
+        
+        .dynamic-text {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            height: 60px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .dynamic-text span {
+            display: block;
+            animation: slide 9s steps(3) infinite;
+        }
+        
+        @keyframes slide {
+            100% {
+                transform: translateY(-300%);
+            }
+        }
+        
+        .dynamic-text span:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, #1a2530 100%);
+            border-left: 2px solid var(--secondary);
+            animation: typing-dynamic 3s steps(15) infinite;
+        }
+        
+        @keyframes typing-dynamic {
+            40%, 60% {
+                left: calc(100% + 10px);
+            }
+            100% {
+                left: 0;
+            }
         }
         
         .hero p {
@@ -183,17 +286,33 @@
             font-size: 1.2rem;
             max-width: 600px;
             margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeIn 1s ease 2s forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .hero-btns {
             display: flex;
             gap: 15px;
+            opacity: 0;
+            animation: fadeIn 1s ease 2.5s forwards;
         }
         
         .hero-img {
             flex: 1;
             display: flex;
             justify-content: center;
+            opacity: 0;
+            animation: fadeInRight 1s ease 1s forwards;
+        }
+        
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
         }
         
         .avatar-container {
@@ -204,6 +323,12 @@
             border: 5px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             position: relative;
+            transition: all 0.5s ease;
+        }
+        
+        .avatar-container:hover {
+            transform: scale(1.05);
+            border-color: rgba(255, 255, 255, 0.5);
         }
         
         .avatar {
@@ -248,6 +373,14 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             display: flex;
             justify-content: center;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 1s ease;
+        }
+        
+        .about-img.animate {
+            opacity: 1;
+            transform: translateX(0);
         }
         
         .about-avatar {
@@ -258,6 +391,14 @@
         
         .about-text {
             flex: 1;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 1s ease;
+        }
+        
+        .about-text.animate {
+            opacity: 1;
+            transform: translateX(0);
         }
         
         .about-text h3 {
@@ -273,7 +414,19 @@
         
         .stat {
             text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s ease;
         }
+        
+        .stat.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .stat:nth-child(1) { transition-delay: 0.1s; }
+        .stat:nth-child(2) { transition-delay: 0.2s; }
+        .stat:nth-child(3) { transition-delay: 0.3s; }
         
         .stat-number {
             font-size: 2.5rem;
@@ -302,7 +455,19 @@
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s ease;
         }
+        
+        .skill-category.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .skill-category:nth-child(1) { transition-delay: 0.1s; }
+        .skill-category:nth-child(2) { transition-delay: 0.2s; }
+        .skill-category:nth-child(3) { transition-delay: 0.3s; }
         
         .skill-category h3 {
             display: flex;
@@ -343,6 +508,12 @@
             height: 100%;
             background-color: var(--secondary);
             border-radius: 4px;
+            width: 0;
+            transition: width 1.5s ease 0.5s;
+        }
+        
+        .skill-category.animate .skill-level {
+            width: var(--skill-level);
         }
         
         /* Projects Section */
@@ -385,7 +556,19 @@
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
         }
+        
+        .project-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.5s ease;
+        }
+        
+        .project-card:nth-child(1) { transition-delay: 0.1s; }
+        .project-card:nth-child(2) { transition-delay: 0.2s; }
+        .project-card:nth-child(3) { transition-delay: 0.3s; }
         
         .project-card:hover {
             transform: translateY(-10px);
@@ -464,7 +647,20 @@
             display: flex;
             align-items: flex-start;
             margin-bottom: 30px;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.5s ease;
         }
+        
+        .contact-item.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .contact-item:nth-child(1) { transition-delay: 0.1s; }
+        .contact-item:nth-child(2) { transition-delay: 0.2s; }
+        .contact-item:nth-child(3) { transition-delay: 0.3s; }
+        .contact-item:nth-child(4) { transition-delay: 0.4s; }
         
         .contact-icon {
             background-color: var(--secondary);
@@ -489,6 +685,14 @@
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.5s ease;
+        }
+        
+        .contact-form.animate {
+            opacity: 1;
+            transform: translateX(0);
         }
         
         .form-group {
@@ -507,6 +711,13 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+            outline: none;
         }
         
         textarea.form-control {
@@ -593,6 +804,36 @@
             font-size: 0.9rem;
         }
         
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+        
+        .scroll-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-top:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
         /* Responsive Design */
         @media (max-width: 992px) {
             .hero-content {
@@ -667,6 +908,11 @@
                 width: 250px;
                 height: 250px;
             }
+            
+            .dynamic-text {
+                font-size: 2rem;
+                height: 50px;
+            }
         }
     </style>
 </head>
@@ -675,7 +921,7 @@
     <header>
         <div class="container">
             <nav>
-                <div class="logo">Alex<span>Morgan</span></div>
+                <div class="logo">Weldon<span>Langat</span></div>
                 <div class="menu-toggle">
                     <i class="fas fa-bars"></i>
                 </div>
@@ -696,7 +942,12 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <h1>Transforming Data into Actionable Insights</h1>
-                    <p>I'm a data analyst with 5+ years of experience helping businesses make data-driven decisions through statistical analysis, visualization, and predictive modeling.</p>
+                    <div class="dynamic-text">
+                        <span>Data Analyst</span>
+                        <span>Business Intelligence Specialist</span>
+                        <span>Data Scientist</span>
+                    </div>
+                    <p>I'm Weldon Kipkurui Langat, a data analyst with 5+ years of experience helping businesses make data-driven decisions through statistical analysis, visualization, and predictive modeling.</p>
                     <div class="hero-btns">
                         <a href="#projects" class="btn">View My Work</a>
                         <a href="#contact" class="btn btn-outline">Get In Touch</a>
@@ -707,12 +958,12 @@
                         <!-- AVATAR PLACEHOLDER - REPLACE WITH YOUR IMAGE -->
                         <div class="avatar-placeholder">
                             <i class="fas fa-user-circle"></i>
-                            <h3>Your Avatar</h3>
-                            <p>Add your professional photo here</p>
+                            <h3>Weldon Langat</h3>
+                            <p>Professional Data Analyst</p>
                         </div>
                         <!-- 
                         TO ADD YOUR AVATAR, REPLACE THE ABOVE DIV WITH:
-                        <img src="your-avatar.jpg" alt="Your Name" class="avatar">
+                        <img src="your-avatar.jpg" alt="Weldon Langat" class="avatar">
                         -->
                     </div>
                 </div>
@@ -729,17 +980,17 @@
                     <!-- Additional avatar in about section -->
                     <div class="avatar-placeholder" style="width: 100%; height: 400px; border-radius: 10px;">
                         <i class="fas fa-user-tie"></i>
-                        <h3>Professional Photo</h3>
-                        <p>Add another photo here</p>
+                        <h3>Weldon Kipkurui Langat</h3>
+                        <p>Data Analyst & BI Specialist</p>
                     </div>
                     <!-- 
                     TO ADD YOUR PHOTO, REPLACE THE ABOVE DIV WITH:
-                    <img src="your-photo.jpg" alt="Your Name" class="about-avatar">
+                    <img src="your-photo.jpg" alt="Weldon Langat" class="about-avatar">
                     -->
                 </div>
                 <div class="about-text">
                     <h3>Data Analyst & Business Intelligence Specialist</h3>
-                    <p>Hello! I'm Alex Morgan, a passionate data analyst with expertise in transforming complex datasets into meaningful insights. I specialize in statistical analysis, data visualization, and building predictive models to solve business challenges.</p>
+                    <p>Hello! I'm Weldon Kipkurui Langat, a passionate data analyst with expertise in transforming complex datasets into meaningful insights. I specialize in statistical analysis, data visualization, and building predictive models to solve business challenges.</p>
                     <p>My background includes a Master's degree in Data Science and experience across multiple industries including finance, e-commerce, and healthcare. I'm proficient in Python, R, SQL, Tableau, and Power BI.</p>
                     <div class="stats">
                         <div class="stat">
@@ -772,25 +1023,25 @@
                         <li>
                             <span class="skill-name">Statistical Analysis</span>
                             <div class="skill-bar">
-                                <div class="skill-level" style="width: 95%"></div>
+                                <div class="skill-level" style="--skill-level: 95%"></div>
                             </div>
                         </li>
                         <li>
                             <span class="skill-name">Predictive Modeling</span>
                             <div class="skill-bar">
-                                <div class="skill-level" style="width: 90%"></div>
+                                <div class="skill-level" style="--skill-level: 90%"></div>
                             </div>
                         </li>
                         <li>
                             <span class="skill-name">Data Mining</span>
                             <div class="skill-bar">
-                                <div class="skill-level" style="width: 85%"></div>
+                                <div class="skill-level" style="--skill-level: 85%"></div>
                             </div>
                         </li>
                         <li>
                             <span class="skill-name">A/B Testing</span>
                             <div class="skill-bar">
-                                <div class="skill-level" style="width: 80%"></div>
+                                <div class="skill-level" style="--skill-level: 80%"></div>
                             </div>
                         </li>
                     </ul>
@@ -801,25 +1052,25 @@
                         <li>
                             <span class="skill-name">Python</span>
                             <div class="skill-bar">
-                                <div class="skill-level" style="width: 90%"></div>
+                                <div class="skill-level" style="--skill-level: 90%"></div>
                             </div>
                         </li>
                         <li>
                             <span class="skill-name">SQL</span>
                             <div class="skill-bar">
-                                <div class="skill-level" style="width: 95%"></div>
+                                <div class="skill-level" style="--skill-level: 95%"></div>
                             </div>
                         </li>
                         <li>
                             <span class="skill-name">R</span>
                             <div class="skill-bar">
-                                <div class="skill-level" style="width: 85%"></div>
+                                <div class="skill-level" style="--skill-level: 85%"></div>
                             </div>
                         </li>
                         <li>
                             <span class="skill-name">Excel</span>
                             <div class="skill-bar">
-                                <div class="skill-level" style="width: 90%"></div>
+                                <div class="skill-level" style="--skill-level: 90%"></div>
                             </div>
                         </li>
                     </ul>
@@ -830,25 +1081,25 @@
                         <li>
                             <span class="skill-name">Tableau</span>
                             <div class="skill-bar">
-                                <div class="skill-level" style="width: 90%"></div>
+                                <div class="skill-level" style="--skill-level: 90%"></div>
                             </div>
                         </li>
                         <li>
                             <span class="skill-name">Power BI</span>
                             <div class="skill-bar">
-                                <div class="skill-level" style="width: 85%"></div>
+                                <div class="skill-level" style="--skill-level: 85%"></div>
                             </div>
                         </li>
                         <li>
                             <span class="skill-name">Matplotlib/Seaborn</span>
                             <div class="skill-bar">
-                                <div class="skill-level" style="width: 80%"></div>
+                                <div class="skill-level" style="--skill-level: 80%"></div>
                             </div>
                         </li>
                         <li>
                             <span class="skill-name">D3.js</span>
                             <div class="skill-bar">
-                                <div class="skill-level" style="width: 70%"></div>
+                                <div class="skill-level" style="--skill-level: 70%"></div>
                             </div>
                         </li>
                     </ul>
@@ -944,7 +1195,7 @@
                         </div>
                         <div class="contact-details">
                             <h3>Location</h3>
-                            <p>San Francisco, CA</p>
+                            <p>Nairobi, Kenya</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -953,7 +1204,7 @@
                         </div>
                         <div class="contact-details">
                             <h3>Email</h3>
-                            <p>alex.morgan@example.com</p>
+                            <p>weldon.langat@example.com</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -962,7 +1213,7 @@
                         </div>
                         <div class="contact-details">
                             <h3>Phone</h3>
-                            <p>+1 (555) 123-4567</p>
+                            <p>+254 7XX XXX XXX</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -971,7 +1222,7 @@
                         </div>
                         <div class="contact-details">
                             <h3>Website</h3>
-                            <p>www.alexmorgan-data.com</p>
+                            <p>www.weldonlangat.com</p>
                         </div>
                     </div>
                 </div>
@@ -1005,7 +1256,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-about">
-                    <h3>Alex Morgan</h3>
+                    <h3>Weldon Kipkurui Langat</h3>
                     <p>Data analyst specializing in transforming complex data into actionable insights that drive business growth and innovation.</p>
                 </div>
                 <div class="footer-links">
@@ -1029,10 +1280,15 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 Alex Morgan. All Rights Reserved.</p>
+                <p>&copy; 2023 Weldon Kipkurui Langat. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
+
+    <!-- Scroll to top button -->
+    <div class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
 
     <script>
         // Mobile menu toggle
@@ -1079,6 +1335,54 @@
                         behavior: 'smooth'
                     });
                 }
+            });
+        });
+
+        // Scroll animations
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.about-img, .about-text, .stat, .skill-category, .project-card, .contact-item, .contact-form');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('animate');
+                }
+            });
+        }
+
+        // Header scroll effect
+        function headerScroll() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }
+
+        // Scroll to top button
+        function scrollTopButton() {
+            const scrollBtn = document.querySelector('.scroll-top');
+            if (window.scrollY > 300) {
+                scrollBtn.classList.add('active');
+            } else {
+                scrollBtn.classList.remove('active');
+            }
+        }
+
+        // Initialize animations on load
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('scroll', headerScroll);
+        window.addEventListener('scroll', scrollTopButton);
+
+        // Scroll to top functionality
+        document.querySelector('.scroll-top').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
         });
     </script>
