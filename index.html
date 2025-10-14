@@ -161,7 +161,16 @@
             background: linear-gradient(135deg, var(--primary) 0%, #1a2530 100%);
             color: white;
             padding: 150px 0 100px;
-            text-align: center;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .hero-text {
+            flex: 1;
         }
         
         .hero h1 {
@@ -172,18 +181,52 @@
         .hero p {
             color: var(--light);
             font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
+            max-width: 600px;
+            margin-bottom: 30px;
         }
         
         .hero-btns {
             display: flex;
-            justify-content: center;
             gap: 15px;
         }
         
-        .hero .btn {
-            margin: 0 10px;
+        .hero-img {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .photo-container {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .photo-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0.8;
         }
         
         /* About Section */
@@ -202,41 +245,12 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #3498db, #2c3e50);
-            min-height: 400px;
         }
         
         .about-img img {
             width: 100%;
             height: auto;
             display: block;
-            border-radius: 10px;
-        }
-        
-        .photo-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-        
-        .photo-placeholder i {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            opacity: 0.8;
-        }
-        
-        .photo-placeholder h3 {
-            color: white;
-            margin-bottom: 10px;
         }
         
         .about-text {
@@ -578,6 +592,15 @@
         
         /* Responsive Design */
         @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            
+            .hero-btns {
+                justify-content: center;
+            }
+            
             .about-content {
                 flex-direction: column;
             }
@@ -636,6 +659,11 @@
                 flex-direction: column;
                 gap: 20px;
             }
+            
+            .photo-container {
+                width: 250px;
+                height: 250px;
+            }
         }
     </style>
 </head>
@@ -662,11 +690,29 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
-            <h1>Transforming Data into Actionable Insights</h1>
-            <p>I'm a data analyst with 5+ years of experience helping businesses make data-driven decisions through statistical analysis, visualization, and predictive modeling.</p>
-            <div class="hero-btns">
-                <a href="#projects" class="btn">View My Work</a>
-                <a href="#contact" class="btn btn-outline">Get In Touch</a>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Transforming Data into Actionable Insights</h1>
+                    <p>I'm a data analyst with 5+ years of experience helping businesses make data-driven decisions through statistical analysis, visualization, and predictive modeling.</p>
+                    <div class="hero-btns">
+                        <a href="#projects" class="btn">View My Work</a>
+                        <a href="#contact" class="btn btn-outline">Get In Touch</a>
+                    </div>
+                </div>
+                <div class="hero-img">
+                    <div class="photo-container">
+                        <!-- Replace this placeholder with your photo -->
+                        <div class="photo-placeholder">
+                            <i class="fas fa-user-circle"></i>
+                            <p>Your Photo</p>
+                            <p><small>Add your professional photo here</small></p>
+                        </div>
+                        <!-- 
+                        To add your photo, replace the above div with:
+                        <img src="your-photo.jpg" alt="Your Name">
+                        -->
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -677,12 +723,9 @@
             <h2>About Me</h2>
             <div class="about-content">
                 <div class="about-img">
-                    <!-- Photo placeholder - replace with your actual photo -->
-                    <div class="photo-placeholder">
-                        <i class="fas fa-user-circle"></i>
-                        <h3>Your Photo Here</h3>
-                        <p>Replace this placeholder with your professional photo</p>
-                        <p><small>To add your photo, replace this entire div with: &lt;img src="your-photo.jpg" alt="Your Name"&gt;</small></p>
+                    <!-- Placeholder for about section photo -->
+                    <div style="width:100%; height:400px; background:linear-gradient(135deg, #3498db, #2c3e50); display:flex; align-items:center; justify-content:center; color:white; font-size:1.2rem;">
+                        Additional Photo
                     </div>
                 </div>
                 <div class="about-text">
@@ -709,6 +752,7 @@
         </div>
     </section>
 
+    <!-- The rest of the code remains the same as before -->
     <!-- Skills Section -->
     <section class="skills" id="skills">
         <div class="container">
