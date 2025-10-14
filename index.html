@@ -205,6 +205,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            min-height: 400px;
         }
         
         .about-img img {
@@ -216,23 +218,25 @@
         
         .photo-placeholder {
             width: 100%;
-            height: 400px;
-            background-color: #f0f0f0;
+            height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: var(--gray);
-            border: 2px dashed #ccc;
-            border-radius: 10px;
+            color: white;
             text-align: center;
             padding: 20px;
         }
         
         .photo-placeholder i {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            color: var(--secondary);
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        
+        .photo-placeholder h3 {
+            color: white;
+            margin-bottom: 10px;
         }
         
         .about-text {
@@ -676,13 +680,10 @@
                     <!-- Photo placeholder - replace with your actual photo -->
                     <div class="photo-placeholder">
                         <i class="fas fa-user-circle"></i>
-                        <p>Your Photo Goes Here</p>
-                        <p><small>Replace this placeholder with your professional photo</small></p>
+                        <h3>Your Photo Here</h3>
+                        <p>Replace this placeholder with your professional photo</p>
+                        <p><small>To add your photo, replace this entire div with: &lt;img src="your-photo.jpg" alt="Your Name"&gt;</small></p>
                     </div>
-                    <!-- 
-                    To add your photo, replace the above div with:
-                    <img src="your-photo.jpg" alt="Your Name">
-                    -->
                 </div>
                 <div class="about-text">
                     <h3>Data Analyst & Business Intelligence Specialist</h3>
