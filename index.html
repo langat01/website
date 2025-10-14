@@ -196,22 +196,23 @@
             justify-content: center;
         }
         
-        .photo-container {
+        .avatar-container {
             width: 350px;
             height: 350px;
             border-radius: 50%;
             overflow: hidden;
             border: 5px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
         }
         
-        .photo-container img {
+        .avatar {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
         
-        .photo-placeholder {
+        .avatar-placeholder {
             width: 100%;
             height: 100%;
             background: linear-gradient(135deg, #3498db, #2c3e50);
@@ -223,8 +224,8 @@
             text-align: center;
         }
         
-        .photo-placeholder i {
-            font-size: 4rem;
+        .avatar-placeholder i {
+            font-size: 6rem;
             margin-bottom: 20px;
             opacity: 0.8;
         }
@@ -245,12 +246,14 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: center;
         }
         
-        .about-img img {
+        .about-avatar {
             width: 100%;
-            height: auto;
-            display: block;
+            height: 400px;
+            object-fit: cover;
         }
         
         .about-text {
@@ -660,7 +663,7 @@
                 gap: 20px;
             }
             
-            .photo-container {
+            .avatar-container {
                 width: 250px;
                 height: 250px;
             }
@@ -700,16 +703,16 @@
                     </div>
                 </div>
                 <div class="hero-img">
-                    <div class="photo-container">
-                        <!-- Replace this placeholder with your photo -->
-                        <div class="photo-placeholder">
+                    <div class="avatar-container">
+                        <!-- AVATAR PLACEHOLDER - REPLACE WITH YOUR IMAGE -->
+                        <div class="avatar-placeholder">
                             <i class="fas fa-user-circle"></i>
-                            <p>Your Photo</p>
-                            <p><small>Add your professional photo here</small></p>
+                            <h3>Your Avatar</h3>
+                            <p>Add your professional photo here</p>
                         </div>
                         <!-- 
-                        To add your photo, replace the above div with:
-                        <img src="your-photo.jpg" alt="Your Name">
+                        TO ADD YOUR AVATAR, REPLACE THE ABOVE DIV WITH:
+                        <img src="your-avatar.jpg" alt="Your Name" class="avatar">
                         -->
                     </div>
                 </div>
@@ -723,10 +726,16 @@
             <h2>About Me</h2>
             <div class="about-content">
                 <div class="about-img">
-                    <!-- Placeholder for about section photo -->
-                    <div style="width:100%; height:400px; background:linear-gradient(135deg, #3498db, #2c3e50); display:flex; align-items:center; justify-content:center; color:white; font-size:1.2rem;">
-                        Additional Photo
+                    <!-- Additional avatar in about section -->
+                    <div class="avatar-placeholder" style="width: 100%; height: 400px; border-radius: 10px;">
+                        <i class="fas fa-user-tie"></i>
+                        <h3>Professional Photo</h3>
+                        <p>Add another photo here</p>
                     </div>
+                    <!-- 
+                    TO ADD YOUR PHOTO, REPLACE THE ABOVE DIV WITH:
+                    <img src="your-photo.jpg" alt="Your Name" class="about-avatar">
+                    -->
                 </div>
                 <div class="about-text">
                     <h3>Data Analyst & Business Intelligence Specialist</h3>
@@ -752,7 +761,6 @@
         </div>
     </section>
 
-    <!-- The rest of the code remains the same as before -->
     <!-- Skills Section -->
     <section class="skills" id="skills">
         <div class="container">
@@ -862,7 +870,6 @@
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-img">
-                        <!-- Placeholder for project image -->
                         <div style="width:100%; height:100%; background-color:#2c3e50; display:flex; align-items:center; justify-content:center; color:white;">
                             Sales Dashboard
                         </div>
@@ -883,7 +890,6 @@
                 </div>
                 <div class="project-card">
                     <div class="project-img">
-                        <!-- Placeholder for project image -->
                         <div style="width:100%; height:100%; background-color:#3498db; display:flex; align-items:center; justify-content:center; color:white;">
                             Customer Segmentation
                         </div>
@@ -904,7 +910,6 @@
                 </div>
                 <div class="project-card">
                     <div class="project-img">
-                        <!-- Placeholder for project image -->
                         <div style="width:100%; height:100%; background-color:#e74c3c; display:flex; align-items:center; justify-content:center; color:white;">
                             Churn Prediction
                         </div>
