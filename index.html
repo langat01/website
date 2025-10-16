@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weldon Kipkurui Langat | Data Analyst Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
             --primary: #2d5016;
@@ -355,6 +354,80 @@
             font-size: 6rem;
             margin-bottom: 20px;
             opacity: 0.8;
+        }
+
+        /* Mobile Phone Frame */
+        .phone-frame {
+            width: 300px;
+            height: 600px;
+            background: #222;
+            border-radius: 40px;
+            padding: 15px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            overflow: hidden;
+            border: 8px solid #333;
+        }
+        
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .phone-content {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .phone-image {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease;
+        }
+        
+        .phone-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .phone-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .phone-btn.active {
+            background: white;
+            transform: scale(1.2);
+        }
+        
+        .phone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 25px;
+            background: #222;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            z-index: 10;
         }
 
         /* About Section */
@@ -869,17 +942,19 @@
                     </div>
                 </div>
                 <div class="hero-img">
-                    <div class="avatar-container">
-                        <!-- AVATAR PLACEHOLDER - REPLACE WITH YOUR IMAGE -->
-                        <div class="avatar-placeholder">
-                            <i class="fas fa-user-circle"></i>
-                            <h3>Weldon Langat</h3>
-                            <p>Professional Data Analyst</p>
+                    <!-- Mobile Phone Frame with Interactive Images -->
+                    <div class="phone-frame">
+                        <div class="phone-notch"></div>
+                        <div class="phone-screen">
+                            <div class="phone-content">
+                                <div class="phone-image" id="phone-image" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                                <div class="phone-controls">
+                                    <div class="phone-btn active" data-image="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"></div>
+                                    <div class="phone-btn" data-image="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"></div>
+                                    <div class="phone-btn" data-image="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"></div>
+                                </div>
+                            </div>
                         </div>
-                        <!-- 
-                        TO ADD YOUR AVATAR, REPLACE THE ABOVE DIV WITH:
-                        <img src="your-avatar.jpg" alt="Weldon Langat" class="avatar">
-                        -->
                     </div>
                 </div>
             </div>
@@ -893,15 +968,13 @@
             <div class="about-content">
                 <div class="about-img">
                     <!-- Additional avatar in about section -->
-                    <div class="avatar-placeholder" style="width: 100%; height: 400px; border-radius: 10px;">
-                        <i class="fas fa-user-tie"></i>
-                        <h3>Weldon Kipkurui Langat</h3>
-                        <p>Data Analyst & BI Specialist</p>
+                    <div class="avatar-container" style="width: 100%; height: 400px;">
+                        <div class="avatar-placeholder">
+                            <i class="fas fa-user-tie"></i>
+                            <h3>Weldon Kipkurui Langat</h3>
+                            <p>Data Analyst & BI Specialist</p>
+                        </div>
                     </div>
-                    <!-- 
-                    TO ADD YOUR PHOTO, REPLACE THE ABOVE DIV WITH:
-                    <img src="your-photo.jpg" alt="Weldon Langat" class="about-avatar">
-                    -->
                 </div>
                 <div class="about-text">
                     <h3>Data Analyst & Business Intelligence Specialist</h3>
@@ -1278,6 +1351,24 @@
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
+            });
+        });
+
+        // Phone image carousel
+        const phoneBtns = document.querySelectorAll('.phone-btn');
+        const phoneImage = document.getElementById('phone-image');
+        
+        phoneBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                phoneBtns.forEach(b => b.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Change the image
+                const imageUrl = this.getAttribute('data-image');
+                phoneImage.style.backgroundImage = `url('${imageUrl}')`;
             });
         });
     </script>
