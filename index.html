@@ -1,142 +1,234 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weldon Langat | Data Science Specialist</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="images/profile.jpg" type="image/jpg">
-</head>
-<body>
+i need better coding working :root {
+  --primary: #2d5016;
+  --secondary: #27ae60;
+  --accent: #e84393;
+  --light: #f4f4f4;
+  --dark: #222;
+  --transition: all 0.3s ease;
+}
 
-<!-- ===== HEADER ===== -->
-<header class="navbar">
-  <div class="logo">Weltech Pro</div>
-  <nav class="nav-links" id="nav-links">
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </nav>
-  <div class="menu-toggle" id="menu-toggle">&#9776;</div>
-</header>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-<!-- ===== HERO ===== -->
-<section id="home" class="hero">
-  <div class="hero-content fade-in">
-    <h1>Hi, I'm <span>Weldon Langat</span></h1>
-    <h2>Data Science Specialist</h2>
-    <p>I turn raw data into actionable insights using modern analytics, machine learning, and automation tools.</p>
-    <a href="#projects" class="btn">View My Work</a>
-  </div>
-  <div class="hero-image fade-in">
-    <img src="images/profile.jpg" alt="Weldon Langat">
-  </div>
-</section>
+body {
+  font-family: 'Segoe UI', sans-serif;
+  color: var(--dark);
+  background: var(--light);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
 
-<!-- ===== ABOUT ===== -->
-<section id="about" class="about fade-in">
-  <h2>About Me</h2>
-  <p>I'm a passionate data scientist and applied statistician from Kenya with a strong background in Python, Power BI, SQL, and AI-driven decision systems. I help businesses make smarter, data-informed choices through predictive analytics and automation.</p>
-  <div class="about-stats">
-    <div class="stat"><h3>3+</h3><p>Years of Experience</p></div>
-    <div class="stat"><h3>10+</h3><p>AI Projects Completed</p></div>
-    <div class="stat"><h3>5+</h3><p>Clients Served</p></div>
-  </div>
-</section>
+/* ===== NAVBAR ===== */
+.navbar {
+  position: fixed;
+  width: 100%;
+  background: rgba(255,255,255,0.95);
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
 
-<!-- ===== SKILLS ===== -->
-<section id="skills" class="skills fade-in">
-  <h2>My Skills</h2>
-  <div class="skills-grid">
-    <div class="skill">
-      <h3>Python & Data Science</h3>
-      <div class="progress"><div class="bar" style="width: 90%;"></div></div>
-    </div>
-    <div class="skill">
-      <h3>Machine Learning</h3>
-      <div class="progress"><div class="bar" style="width: 85%;"></div></div>
-    </div>
-    <div class="skill">
-      <h3>Power BI / SQL</h3>
-      <div class="progress"><div class="bar" style="width: 80%;"></div></div>
-    </div>
-    <div class="skill">
-      <h3>Web Development</h3>
-      <div class="progress"><div class="bar" style="width: 75%;"></div></div>
-    </div>
-  </div>
-</section>
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+}
 
-<!-- ===== PROJECTS ===== -->
-<section id="projects" class="projects fade-in">
-  <h2>Featured Projects</h2>
-  <div class="project-grid">
-    <div class="project-card">
-      <img src="images/project1.jpg" alt="Crypto Prediction AI">
-      <h3>Crypto Prediction AI</h3>
-      <p>AI model predicting cryptocurrency trends with advanced indicators and LSTM networks.</p>
-      <a href="#" class="btn">View Project</a>
-    </div>
-    <div class="project-card">
-      <img src="images/project2.jpg" alt="Football Analytics">
-      <h3>Football Analytics System</h3>
-      <p>Predictive analysis for football matches using machine learning and visual dashboards.</p>
-      <a href="#" class="btn">View Project</a>
-    </div>
-    <div class="project-card">
-      <img src="images/project3.jpg" alt="Empower Her Kenya">
-      <h3>Empower Her Kenya</h3>
-      <p>Django-based platform supporting women's empowerment through mentorship and training.</p>
-      <a href="#" class="btn">View Project</a>
-    </div>
-  </div>
-</section>
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
 
-<!-- ===== CONTACT ===== -->
-<section id="contact" class="contact fade-in">
-  <h2>Contact Me</h2>
-  <div class="contact-grid">
-    <div class="contact-info">
-      <p><strong>Email:</strong> langatweldon665@gmail.com</p>
-      <p><strong>Phone:</strong> +254 111 203 826</p>
-      <p><strong>Location:</strong> Nairobi, Kenya</p>
-    </div>
-    <form class="contact-form">
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea placeholder="Your Message" required></textarea>
-      <button type="submit" class="btn">Send Message</button>
-    </form>
-  </div>
-</section>
+.nav-links a {
+  text-decoration: none;
+  color: var(--dark);
+  font-weight: 500;
+  position: relative;
+  transition: var(--transition);
+}
 
-<!-- ===== FOOTER ===== -->
-<footer class="footer">
-  <p>&copy; 2025 Weltech Pro | Designed by Weldon Langat</p>
-</footer>
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background: var(--secondary);
+  bottom: -4px;
+  left: 0;
+  transition: width 0.3s ease;
+}
 
-<script>
-// ===== MOBILE MENU =====
-document.getElementById("menu-toggle").addEventListener("click", () => {
-  document.getElementById("nav-links").classList.toggle("active");
-});
+.nav-links a:hover::after {
+  width: 100%;
+}
 
-// ===== FADE-IN ANIMATION =====
-const faders = document.querySelectorAll('.fade-in');
-const appearOptions = { threshold: 0.2 };
+.menu-toggle {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
 
-const appearOnScroll = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    entry.target.classList.add('visible');
-    observer.unobserve(entry.target);
-  });
-}, appearOptions);
+/* ===== HERO ===== */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 120px 40px 60px;
+  background: linear-gradient(120deg, var(--primary), var(--secondary));
+  color: white;
+  flex-wrap: wrap;
+}
 
-faders.forEach(fader => appearOnScroll.observe(fader));
-</script>
+.hero-content {
+  flex: 1;
+  min-width: 300px;
+}
 
-</body>
-</html>
+.hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.hero-content h1 span {
+  color: var(--accent);
+}
+
+.hero-content p {
+  margin: 15px 0;
+  line-height: 1.6;
+}
+
+.btn {
+  background: var(--accent);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  transition: var(--transition);
+}
+
+.btn:hover {
+  background: var(--secondary);
+}
+
+.hero-image img {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  object-fit: cover;
+}
+
+/* ===== ABOUT ===== */
+section {
+  padding: 80px 40px;
+  text-align: center;
+}
+
+.about-stats {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.stat h3 {
+  color: var(--secondary);
+  font-size: 2rem;
+}
+
+/* ===== SKILLS ===== */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.progress {
+  background: #ddd;
+  border-radius: 10px;
+  height: 10px;
+  overflow: hidden;
+}
+
+.bar {
+  background: var(--secondary);
+  height: 100%;
+}
+
+/* ===== PROJECTS ===== */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.project-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.project-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.project-card h3 {
+  margin: 10px 0;
+  color: var(--primary);
+}
+
+/* ===== CONTACT ===== */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.contact-form button {
+  border: none;
+  cursor: pointer;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: var(--dark);
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+}
+
+/* ===== ANIMATIONS ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-in.
