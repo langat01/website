@@ -6,7 +6,6 @@
     <title>Weldon Kipkurui Langat | Data Analyst Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
     <style>
         :root {
             --primary: rgba(45, 80, 22, 0.8);
@@ -491,7 +490,7 @@
             from { width: 0; }
         }
         
-        /* Projects Section */
+        /* Enhanced Projects Section */
         .projects-filter {
             display: flex;
             justify-content: center;
@@ -517,56 +516,144 @@
             color: white;
         }
         
-        .projects-grid {
+        .projects-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
         }
         
         .project-card {
-            background-color: var(--glass);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px var(--glass-shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            padding: 24px;
+            transition: transform 0.3s, background 0.3s;
             border: 1px solid var(--glass-border);
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease, background 0.3s;
+        }
+        
+        .project-card.show {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.25);
         }
         
-        .project-img {
+        .project-thumb {
+            width: 100%;
             height: 200px;
+            border-radius: 12px;
             overflow: hidden;
+            margin-bottom: 20px;
+            position: relative;
         }
         
-        .project-content {
-            padding: 25px;
+        .project-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
         
-        .project-tags {
+        .project-card:hover .project-thumb img {
+            transform: scale(1.05);
+        }
+        
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+        
+        .project-overlay-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .overlay-link {
+            width: 50px;
+            height: 50px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .overlay-link:hover {
+            background: var(--accent);
+            transform: scale(1.1);
+        }
+        
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+        
+        .project-desc {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+        
+        .project-metrics {
+            background: rgba(39, 174, 96, 0.2);
+            color: var(--secondary);
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: inline-block;
+            border: 1px solid rgba(39, 174, 96, 0.3);
+        }
+        
+        .project-tools {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin: 15px 0;
+            gap: 8px;
+            margin-bottom: 20px;
         }
         
-        .project-tag {
-            background-color: rgba(240, 247, 240, 0.7);
-            color: var(--primary);
+        .tool-badge {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--text-light);
             padding: 5px 12px;
             border-radius: 20px;
             font-size: 0.8rem;
-            font-weight: 600;
+            font-weight: 500;
             backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .project-links {
             display: flex;
             gap: 15px;
+            margin-top: auto;
         }
         
         .project-link {
@@ -578,10 +665,20 @@
             font-weight: 600;
             font-size: 0.9rem;
             transition: color 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
         }
         
         .project-link:hover {
             color: var(--accent);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .see-more-btn {
+            display: block;
+            margin: 40px auto 0;
+            text-align: center;
         }
         
         /* Contact Section */
@@ -789,155 +886,6 @@
             visibility: visible;
         }
         
-        /* Chatbot Styles */
-        .chatbot-container {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 1000;
-        }
-        
-        .chatbot-icon {
-            width: 60px;
-            height: 60px;
-            background-color: var(--accent);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-        }
-        
-        .chatbot-icon:hover {
-            transform: scale(1.1);
-        }
-        
-        .chatbot-window {
-            position: absolute;
-            bottom: 80px;
-            right: 0;
-            width: 350px;
-            height: 450px;
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            border: 1px solid var(--glass-border);
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-        }
-        
-        .chatbot-window.active {
-            display: flex;
-        }
-        
-        .chatbot-header {
-            padding: 15px 20px;
-            background: rgba(39, 174, 96, 0.7);
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .chatbot-close {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
-        
-        .chatbot-messages {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        
-        .message {
-            max-width: 80%;
-            padding: 10px 15px;
-            border-radius: 18px;
-            font-size: 0.9rem;
-        }
-        
-        .bot-message {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            align-self: flex-start;
-            border-bottom-left-radius: 5px;
-        }
-        
-        .user-message {
-            background: rgba(39, 174, 96, 0.7);
-            color: white;
-            align-self: flex-end;
-            border-bottom-right-radius: 5px;
-        }
-        
-        .chatbot-input {
-            display: flex;
-            padding: 15px;
-            border-top: 1px solid var(--glass-border);
-        }
-        
-        .chatbot-input input {
-            flex: 1;
-            padding: 10px 15px;
-            border: 1px solid var(--glass-border);
-            border-radius: 30px;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(5px);
-        }
-        
-        .chatbot-input button {
-            margin-left: 10px;
-            padding: 10px 15px;
-            background: var(--secondary);
-            color: white;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-        
-        .chatbot-input button:hover {
-            background: var(--accent);
-        }
-        
-        /* Loading animation for buttons */
-        .btn-loading {
-            position: relative;
-            color: transparent;
-        }
-        
-        .btn-loading:after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            top: 50%;
-            left: 50%;
-            margin-left: -10px;
-            margin-top: -10px;
-            border: 2px solid #ffffff;
-            border-radius: 50%;
-            border-top-color: transparent;
-            animation: spin 0.8s linear infinite;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
         /* Responsive Design */
         @media (max-width: 992px) {
             .hero-content {
@@ -1033,7 +981,7 @@
                 height: 50px;
             }
             
-            .projects-grid {
+            .projects-container {
                 grid-template-columns: 1fr;
             }
             
@@ -1047,11 +995,6 @@
             
             h2 {
                 font-size: 2rem;
-            }
-            
-            .chatbot-window {
-                width: 300px;
-                height: 400px;
             }
         }
         
@@ -1083,9 +1026,8 @@
                 padding: 0 15px;
             }
             
-            .chatbot-window {
-                width: 280px;
-                right: -20px;
+            .project-card {
+                padding: 20px;
             }
         }
     </style>
@@ -1287,68 +1229,86 @@
                 <button class="filter-btn">Predictive Modeling</button>
                 <button class="filter-btn">Business Intelligence</button>
             </div>
-            <div class="projects-grid">
+            <div class="projects-container">
                 <div class="project-card">
-                    <div class="project-img">
-                        <div style="width:100%; height:100%; background:linear-gradient(135deg, rgba(45, 80, 22, 0.7), rgba(26, 51, 16, 0.7)); display:flex; align-items:center; justify-content:center; color:white;">
-                            <i class="fas fa-chart-line" style="font-size: 4rem;"></i>
+                    <div class="project-thumb">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Sales Dashboard screenshot">
+                        <div class="project-overlay">
+                            <div class="project-overlay-links">
+                                <a href="#" class="overlay-link"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="#" class="overlay-link"><i class="fab fa-github"></i></a>
+                            </div>
                         </div>
                     </div>
-                    <div class="project-content">
-                        <h3>Sales Performance Dashboard</h3>
-                        <p>Interactive dashboard for tracking sales performance across regions and product categories with predictive sales forecasting.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Tableau</span>
-                            <span class="project-tag">SQL</span>
-                            <span class="project-tag">Forecasting</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                            <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
-                        </div>
+                    <h3 class="project-title">Sales Performance Dashboard</h3>
+                    <p class="project-desc">
+                        Interactive dashboard for tracking sales performance across regions and product categories with predictive sales forecasting. I led the data modeling and visualization development.
+                    </p>
+                    <div class="project-metrics">↑ Forecast accuracy: +15%</div>
+                    <div class="project-tools">
+                        <span class="tool-badge">Tableau</span>
+                        <span class="tool-badge">SQL</span>
+                        <span class="tool-badge">Forecasting</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
                     </div>
                 </div>
+                
                 <div class="project-card">
-                    <div class="project-img">
-                        <div style="width:100%; height:100%; background:linear-gradient(135deg, rgba(39, 174, 96, 0.7), rgba(45, 80, 22, 0.7)); display:flex; align-items:center; justify-content:center; color:white;">
-                            <i class="fas fa-users" style="font-size: 4rem;"></i>
+                    <div class="project-thumb">
+                        <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Customer Segmentation screenshot">
+                        <div class="project-overlay">
+                            <div class="project-overlay-links">
+                                <a href="#" class="overlay-link"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="#" class="overlay-link"><i class="fab fa-github"></i></a>
+                            </div>
                         </div>
                     </div>
-                    <div class="project-content">
-                        <h3>Customer Segmentation Analysis</h3>
-                        <p>Used clustering algorithms to segment customers into distinct groups for targeted marketing campaigns. Improved campaign efficiency by 23%.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Python</span>
-                            <span class="project-tag">K-means</span>
-                            <span class="project-tag">Scikit-learn</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Case Study</a>
-                            <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
-                        </div>
+                    <h3 class="project-title">Customer Segmentation Analysis</h3>
+                    <p class="project-desc">
+                        Used clustering algorithms to segment customers into distinct groups for targeted marketing campaigns. I performed feature engineering and implemented the K-means algorithm.
+                    </p>
+                    <div class="project-metrics">↑ Campaign efficiency: +23%</div>
+                    <div class="project-tools">
+                        <span class="tool-badge">Python</span>
+                        <span class="tool-badge">K-means</span>
+                        <span class="tool-badge">Scikit-learn</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Case Study</a>
+                        <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
                     </div>
                 </div>
+                
                 <div class="project-card">
-                    <div class="project-img">
-                        <div style="width:100%; height:100%; background:linear-gradient(135deg, rgba(232, 67, 147, 0.7), rgba(39, 174, 96, 0.7)); display:flex; align-items:center; justify-content:center; color:white;">
-                            <i class="fas fa-chart-pie" style="font-size: 4rem;"></i>
+                    <div class="project-thumb">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Churn Prediction screenshot">
+                        <div class="project-overlay">
+                            <div class="project-overlay-links">
+                                <a href="#" class="overlay-link"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="#" class="overlay-link"><i class="fab fa-github"></i></a>
+                            </div>
                         </div>
                     </div>
-                    <div class="project-content">
-                        <h3>Customer Churn Prediction</h3>
-                        <p>Built a machine learning model to predict customer churn with 92% accuracy, helping reduce churn by 15% using XGBoost.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Python</span>
-                            <span class="project-tag">Random Forest</span>
-                            <span class="project-tag">XGBoost</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Case Study</a>
-                            <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
-                        </div>
+                    <h3 class="project-title">Customer Churn Prediction</h3>
+                    <p class="project-desc">
+                        Built a machine learning model to predict customer churn with 92% accuracy, helping reduce churn by 15%. I implemented XGBoost and handled class imbalance.
+                    </p>
+                    <div class="project-metrics">↓ Churn reduction: -15%</div>
+                    <div class="project-tools">
+                        <span class="tool-badge">Python</span>
+                        <span class="tool-badge">Random Forest</span>
+                        <span class="tool-badge">XGBoost</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Case Study</a>
+                        <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
                     </div>
                 </div>
             </div>
+            <a href="#" class="btn see-more-btn">See All Projects</a>
         </div>
     </section>
 
@@ -1453,30 +1413,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- Chatbot -->
-    <div class="chatbot-container">
-        <div class="chatbot-icon" id="chatbotIcon">
-            <i class="fas fa-robot"></i>
-        </div>
-        <div class="chatbot-window" id="chatbotWindow">
-            <div class="chatbot-header">
-                <h3>Weldon's Assistant</h3>
-                <button class="chatbot-close" id="chatbotClose">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="chatbot-messages" id="chatbotMessages">
-                <div class="message bot-message">
-                    Hi, I'm Weldon's assistant 👋 How can I help you today?
-                </div>
-            </div>
-            <div class="chatbot-input">
-                <input type="text" id="chatbotInput" placeholder="Type your message...">
-                <button id="chatbotSend"><i class="fas fa-paper-plane"></i></button>
-            </div>
-        </div>
-    </div>
 
     <!-- Scroll to top button -->
     <div class="scroll-top">
@@ -1584,82 +1520,23 @@
             }, 2000);
         });
 
-        // Chatbot functionality
-        const chatbotIcon = document.getElementById('chatbotIcon');
-        const chatbotWindow = document.getElementById('chatbotWindow');
-        const chatbotClose = document.getElementById('chatbotClose');
-        const chatbotMessages = document.getElementById('chatbotMessages');
-        const chatbotInput = document.getElementById('chatbotInput');
-        const chatbotSend = document.getElementById('chatbotSend');
-
-        // Open chatbot
-        chatbotIcon.addEventListener('click', () => {
-            chatbotWindow.classList.add('active');
-        });
-
-        // Close chatbot
-        chatbotClose.addEventListener('click', () => {
-            chatbotWindow.classList.remove('active');
-        });
-
-        // Send message
-        function sendMessage() {
-            const message = chatbotInput.value.trim();
-            if (message === '') return;
+        // Project card animations on scroll
+        function animateOnScroll() {
+            const projectCards = document.querySelectorAll('.project-card');
             
-            // Add user message
-            addMessage(message, 'user');
-            chatbotInput.value = '';
-            
-            // Generate bot response
-            setTimeout(() => {
-                const response = generateResponse(message);
-                addMessage(response, 'bot');
-            }, 1000);
+            projectCards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (cardTop < windowHeight - 100) {
+                    card.classList.add('show');
+                }
+            });
         }
 
-        // Send message on button click
-        chatbotSend.addEventListener('click', sendMessage);
-
-        // Send message on Enter key
-        chatbotInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
-
-        // Add message to chat
-        function addMessage(text, sender) {
-            const messageElement = document.createElement('div');
-            messageElement.classList.add('message');
-            messageElement.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
-            messageElement.textContent = text;
-            chatbotMessages.appendChild(messageElement);
-            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-        }
-
-        // Generate bot response
-        function generateResponse(message) {
-            const lowerMessage = message.toLowerCase();
-            
-            if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
-                return "Hello! How can I help you learn more about Weldon's skills and projects?";
-            } else if (lowerMessage.includes('skill') || lowerMessage.includes('what can you do')) {
-                return "Weldon specializes in data analysis, visualization, and predictive modeling. He's proficient in Python, SQL, Tableau, and Power BI. Check out the Skills section for more details!";
-            } else if (lowerMessage.includes('project') || lowerMessage.includes('work')) {
-                return "Weldon has completed 50+ projects including sales dashboards, customer segmentation, and churn prediction models. You can see his projects in the Projects section.";
-            } else if (lowerMessage.includes('contact') || lowerMessage.includes('email') || lowerMessage.includes('hire')) {
-                return "You can contact Weldon via email at weldon.langat@example.com or use the contact form on this website. He's available for freelance projects and full-time opportunities!";
-            } else if (lowerMessage.includes('cv') || lowerMessage.includes('resume') || lowerMessage.includes('download')) {
-                return "You can download Weldon's CV by clicking the 'Download CV' button in the Home or About sections. It contains his complete work history and qualifications.";
-            } else if (lowerMessage.includes('github') || lowerMessage.includes('code')) {
-                return "You can find Weldon's code repositories on GitHub. Check the footer for links to his GitHub profile and other social media.";
-            } else if (lowerMessage.includes('experience') || lowerMessage.includes('year')) {
-                return "Weldon has 5+ years of experience in data analysis across finance, e-commerce, and healthcare industries. He holds a Master's degree in Data Science.";
-            } else {
-                return "I'm not sure I understand. You can ask me about Weldon's skills, projects, experience, or how to contact him. Would you like me to connect you directly via the contact form?";
-            }
-        }
+        // Initialize animations on load and scroll
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
     </script>
 </body>
 </html>
