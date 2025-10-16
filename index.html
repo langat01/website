@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<!-- HEADER -->
+<!-- ===== HEADER ===== -->
 <header class="navbar">
   <div class="logo">Weltech Pro</div>
   <nav class="nav-links" id="nav-links">
@@ -22,12 +22,12 @@
   <div class="menu-toggle" id="menu-toggle">&#9776;</div>
 </header>
 
-<!-- HERO -->
+<!-- ===== HERO ===== -->
 <section id="home" class="hero">
   <div class="hero-content fade-in">
     <h1>Hi, I'm <span>Weldon Langat</span></h1>
     <h2>Data Science Specialist</h2>
-    <p>I turn raw data into powerful insights and AI-driven solutions.</p>
+    <p>I turn raw data into actionable insights using modern analytics, machine learning, and automation tools.</p>
     <a href="#projects" class="btn">View My Work</a>
   </div>
   <div class="hero-image fade-in">
@@ -35,10 +35,10 @@
   </div>
 </section>
 
-<!-- ABOUT -->
+<!-- ===== ABOUT ===== -->
 <section id="about" class="about fade-in">
   <h2>About Me</h2>
-  <p>I'm a passionate data scientist from Kenya, specialized in predictive analytics, machine learning, and data-driven business intelligence. I love building AI-powered solutions that drive real-world impact.</p>
+  <p>I'm a passionate data scientist and applied statistician from Kenya with a strong background in Python, Power BI, SQL, and AI-driven decision systems. I help businesses make smarter, data-informed choices through predictive analytics and automation.</p>
   <div class="about-stats">
     <div class="stat"><h3>3+</h3><p>Years of Experience</p></div>
     <div class="stat"><h3>10+</h3><p>AI Projects Completed</p></div>
@@ -46,55 +46,55 @@
   </div>
 </section>
 
-<!-- SKILLS -->
+<!-- ===== SKILLS ===== -->
 <section id="skills" class="skills fade-in">
   <h2>My Skills</h2>
   <div class="skills-grid">
     <div class="skill">
       <h3>Python & Data Science</h3>
-      <div class="progress"><div class="bar" style="width: 90%"></div></div>
+      <div class="progress"><div class="bar" style="width: 90%;"></div></div>
     </div>
     <div class="skill">
       <h3>Machine Learning</h3>
-      <div class="progress"><div class="bar" style="width: 85%"></div></div>
+      <div class="progress"><div class="bar" style="width: 85%;"></div></div>
     </div>
     <div class="skill">
       <h3>Power BI / SQL</h3>
-      <div class="progress"><div class="bar" style="width: 80%"></div></div>
+      <div class="progress"><div class="bar" style="width: 80%;"></div></div>
     </div>
     <div class="skill">
       <h3>Web Development</h3>
-      <div class="progress"><div class="bar" style="width: 75%"></div></div>
+      <div class="progress"><div class="bar" style="width: 75%;"></div></div>
     </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
+<!-- ===== PROJECTS ===== -->
 <section id="projects" class="projects fade-in">
   <h2>Featured Projects</h2>
   <div class="project-grid">
     <div class="project-card">
       <img src="images/project1.jpg" alt="Crypto Prediction AI">
       <h3>Crypto Prediction AI</h3>
-      <p>Deep learning model that predicts Bitcoin trends using real-time indicators.</p>
+      <p>AI model predicting cryptocurrency trends with advanced indicators and LSTM networks.</p>
       <a href="#" class="btn">View Project</a>
     </div>
     <div class="project-card">
       <img src="images/project2.jpg" alt="Football Analytics">
       <h3>Football Analytics System</h3>
-      <p>FastAPI + ML project for analyzing football match outcomes and trends.</p>
+      <p>Predictive analysis for football matches using machine learning and visual dashboards.</p>
       <a href="#" class="btn">View Project</a>
     </div>
     <div class="project-card">
       <img src="images/project3.jpg" alt="Empower Her Kenya">
       <h3>Empower Her Kenya</h3>
-      <p>A Django-based site promoting women empowerment through education and mentorship.</p>
+      <p>Django-based platform supporting women's empowerment through mentorship and training.</p>
       <a href="#" class="btn">View Project</a>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- ===== CONTACT ===== -->
 <section id="contact" class="contact fade-in">
   <h2>Contact Me</h2>
   <div class="contact-grid">
@@ -112,20 +112,21 @@
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ===== FOOTER ===== -->
 <footer class="footer">
   <p>&copy; 2025 Weltech Pro | Designed by Weldon Langat</p>
 </footer>
 
 <script>
-// Mobile Navbar Toggle
+// ===== MOBILE MENU =====
 document.getElementById("menu-toggle").addEventListener("click", () => {
   document.getElementById("nav-links").classList.toggle("active");
 });
 
-// Scroll Animation
+// ===== FADE-IN ANIMATION =====
 const faders = document.querySelectorAll('.fade-in');
 const appearOptions = { threshold: 0.2 };
+
 const appearOnScroll = new IntersectionObserver((entries, observer) => {
   entries.forEach(entry => {
     if (!entry.isIntersecting) return;
@@ -133,6 +134,7 @@ const appearOnScroll = new IntersectionObserver((entries, observer) => {
     observer.unobserve(entry.target);
   });
 }, appearOptions);
+
 faders.forEach(fader => appearOnScroll.observe(fader));
 </script>
 
