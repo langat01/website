@@ -1,201 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Financial Risk Analysis Dashboard | Weldon Langat</title>
-    <style>
-        .project-detail {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        
-        .dashboard-preview {
-            background: white;
-            border-radius: 10px;
-            padding: 30px;
-            margin: 30px 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-        }
-        
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin: 30px 0;
-        }
-        
-        .dashboard-item {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid #27ae60;
-        }
-        
-        .metric-highlight {
-            display: flex;
-            justify-content: space-around;
-            margin: 30px 0;
-            text-align: center;
-        }
-        
-        .metric {
-            padding: 20px;
-        }
-        
-        .metric-value {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #27ae60;
-        }
-        
-        .insights-list {
-            background: #e8f5e8;
-            padding: 25px;
-            border-radius: 10px;
-            margin: 25px 0;
-        }
-        
-        .insights-list li {
-            margin: 10px 0;
-            padding-left: 20px;
-            position: relative;
-        }
-        
-        .insights-list li:before {
-            content: "•";
-            color: #27ae60;
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-    </style>
-</head>
-<body>
-    <section class="project-detail">
-        <h1>Financial Risk Analysis Dashboard</h1>
-        <p class="project-subtitle">Comprehensive loan portfolio analysis and risk assessment visualization</p>
-        
-        <div class="dashboard-preview">
-            <h3>📊 Dashboard Overview</h3>
-            <p>This interactive dashboard provides comprehensive insights into loan portfolio performance, customer demographics, and risk assessment metrics across multiple East African markets.</p>
-            
-            <div class="metric-highlight">
-                <div class="metric">
-                    <div class="metric-value">21.47%</div>
-                    <div class="metric-label">Highest Default Rate</div>
-                </div>
-                <div class="metric">
-                    <div class="metric-value">$0.2M</div>
-                    <div class="metric-label">Largest Loan Category</div>
-                </div>
-                <div class="metric">
-                    <div class="metric-value">3</div>
-                    <div class="metric-label">Countries Covered</div>
+<!-- In your projects section, after the third project card -->
+<div class="projects-container">
+    <!-- Your existing 3 project cards -->
+    <div class="project-card">...</div>
+    <div class="project-card">...</div>
+    <div class="project-card">...</div>
+    
+    <!-- NEW BANK ANALYTICS PROJECT CARD -->
+    <div class="project-card" data-category="Business Intelligence">
+        <div class="project-thumb">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Bank Analytics Dashboard">
+            <div class="project-overlay">
+                <div class="project-overlay-links">
+                    <a href="https://app.powerbi.com/your-dashboard" class="overlay-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    <a href="https://github.com/langat01/bank-analytics" class="overlay-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
                 </div>
             </div>
         </div>
-
-        <div class="dashboard-grid">
-            <div class="dashboard-item">
-                <h4>📈 Loan Performance Analysis</h4>
-                <p><strong>Key Finding:</strong> Business loans show the highest interest rates but also the highest default rates (21.47%)</p>
-                <ul>
-                    <li>Personal loans have the lowest default rates</li>
-                    <li>Mortgage loans show stable performance across regions</li>
-                    <li>Auto loans demonstrate moderate risk levels</li>
-                </ul>
-            </div>
-            
-            <div class="dashboard-item">
-                <h4>👥 Customer Demographics</h4>
-                <p><strong>Key Finding:</strong> Male applicants show higher credit scores but similar loan distribution patterns</p>
-                <ul>
-                    <li>Female applicants: More conservative loan amounts</li>
-                    <li>Age distribution: 26-42 years primary applicant range</li>
-                    <li>Geographic spread: Balanced across Kenya, Tanzania, Uganda</li>
-                </ul>
-            </div>
-            
-            <div class="dashboard-item">
-                <h4>💰 Financial Metrics</h4>
-                <p><strong>Key Finding:</strong> Business loans dominate portfolio value but carry highest risk</p>
-                <ul>
-                    <li>Total portfolio value: $0.2M in business loans</li>
-                    <li>Interest rate range: 10-35% across loan types</li>
-                    <li>Salary analysis: John Doe shows highest estimated salary</li>
-                </ul>
-            </div>
-            
-            <div class="dashboard-item">
-                <h4>🌍 Regional Analysis</h4>
-                <p><strong>Key Finding:</strong> Uganda shows unique transaction patterns with higher withdrawal rates</p>
-                <ul>
-                    <li>Kenya: Balanced deposit/withdrawal ratio</li>
-                    <li>Tanzania: Higher transfer activity</li>
-                    <li>Regional risk profiles vary significantly</li>
-                </ul>
-            </div>
+        <h3 class="project-title">Bank Analytics & Loan Performance Dashboard</h3>
+        <p class="project-desc">
+            Comprehensive financial analytics dashboard analyzing loan performance, customer risk profiles, 
+            and transaction patterns across Kenya, Tanzania, and Uganda. Identified key risk factors leading 
+            to 15% reduction in default rates through data-driven lending strategies.
+        </p>
+        <div class="project-metrics">↓ Default rate reduction: -15%</div>
+        <div class="project-tools">
+            <span class="tool-badge">SQL</span>
+            <span class="tool-badge">Power BI</span>
+            <span class="tool-badge">Python</span>
+            <span class="tool-badge">Statistical Analysis</span>
+            <span class="tool-badge">Risk Modeling</span>
         </div>
-
-        <div class="insights-list">
-            <h3>🔍 Key Business Insights</h3>
-            <ul>
-                <li><strong>Risk Concentration:</strong> 21.47% default rate in business loans indicates need for stricter underwriting criteria</li>
-                <li><strong>Portfolio Optimization:</strong> Personal loans show best risk-return profile with lower default rates</li>
-                <li><strong>Geographic Strategy:</strong> Uganda market requires different risk assessment models due to unique transaction behaviors</li>
-                <li><strong>Customer Segmentation:</strong> Age group 31-35 shows optimal credit performance across all loan types</li>
-                <li><strong>Revenue Opportunity:</strong> Auto loans present growth opportunity with moderate risk and good interest rates</li>
-            </ul>
-        </div>
-
-        <div class="project-methodology">
-            <h3>🛠️ Methodology & Tools</h3>
-            <div class="tools-used">
-                <span class="tool-badge">Tableau</span>
-                <span class="tool-badge">SQL</span>
-                <span class="tool-badge">Python</span>
-                <span class="tool-badge">Statistical Analysis</span>
-                <span class="tool-badge">Risk Modeling</span>
-            </div>
-            
-            <h4>Data Processing Pipeline:</h4>
-            <ol>
-                <li><strong>Data Collection:</strong> Aggregated loan applications, transaction history, and customer demographics</li>
-                <li><strong>Data Cleaning:</strong> Handled missing values, outliers, and data normalization</li>
-                <li><strong>Feature Engineering:</strong> Created risk scores, customer segments, and performance metrics</li>
-                <li><strong>Analysis:</strong> Statistical testing, correlation analysis, trend identification</li>
-                <li><strong>Visualization:</strong> Interactive dashboard development with Tableau</li>
-            </ol>
-        </div>
-
-        <div class="business-impact">
-            <h3>💼 Business Impact</h3>
-            <div class="impact-metrics">
-                <div class="impact-item">
-                    <div class="impact-value">15%</div>
-                    <div class="impact-desc">Reduction in default rates after implementing recommended changes</div>
-                </div>
-                <div class="impact-item">
-                    <div class="impact-value">$50K</div>
-                    <div class="impact-desc">Estimated annual savings through better risk assessment</div>
-                </div>
-                <div class="impact-item">
-                    <div class="impact-value">25%</div>
-                    <div class="impact-desc">Improvement in loan approval efficiency</div>
-                </div>
-            </div>
-        </div>
-
         <div class="project-links">
-            <a href="#" class="btn"><i class="fas fa-external-link-alt"></i> Live Dashboard</a>
-            <a href="#" class="btn"><i class="fab fa-github"></i> Analysis Code</a>
-            <a href="#" class="btn"><i class="fas fa-download"></i> Case Study PDF</a>
+            <a href="https://app.powerbi.com/your-dashboard" class="project-link" target="_blank">
+                <i class="fas fa-external-link-alt"></i> Live Dashboard
+            </a>
+            <a href="https://github.com/langat01/bank-analytics" class="project-link" target="_blank">
+                <i class="fab fa-github"></i> Analysis Code
+            </a>
         </div>
-    </section>
-</body>
-</html>
+    </div>
+</div>
