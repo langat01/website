@@ -1,46 +1,126 @@
-<!-- In your projects section, after the third project card -->
-<div class="projects-container">
-    <!-- Your existing 3 project cards -->
-    <div class="project-card">...</div>
-    <div class="project-card">...</div>
-    <div class="project-card">...</div>
-    
-    <!-- NEW BANK ANALYTICS PROJECT CARD -->
-    <div class="project-card" data-category="Business Intelligence">
-        <div class="project-thumb">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Bank Analytics Dashboard">
-            <div class="project-overlay">
-                <div class="project-overlay-links">
-                    <a href="https://app.powerbi.com/your-dashboard" class="overlay-link" target="_blank">
-                        <i class="fas fa-external-link-alt"></i>
-                    </a>
-                    <a href="https://github.com/langat01/bank-analytics" class="overlay-link" target="_blank">
-                        <i class="fab fa-github"></i>
-                    </a>
+<!-- Projects Section -->
+<section class="projects" id="projects">
+    <div class="container">
+        <h2>My Projects</h2>
+        <div class="projects-filter">
+            <button class="filter-btn active">All</button>
+            <button class="filter-btn">Data Visualization</button>
+            <button class="filter-btn">Predictive Modeling</button>
+            <button class="filter-btn">Business Intelligence</button>
+        </div>
+        <div class="projects-container">
+            <!-- Existing Project 1 -->
+            <div class="project-card" data-category="Data Visualization">
+                <div class="project-thumb">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Sales Dashboard screenshot">
+                    <div class="project-overlay">
+                        <div class="project-overlay-links">
+                            <a href="#" class="overlay-link"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="#" class="overlay-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="project-title">Sales Performance Dashboard</h3>
+                <p class="project-desc">
+                    Interactive dashboard for tracking sales performance across regions and product categories with predictive sales forecasting. I led the data modeling and visualization development.
+                </p>
+                <div class="project-metrics">↑ Forecast accuracy: +15%</div>
+                <div class="project-tools">
+                    <span class="tool-badge">Tableau</span>
+                    <span class="tool-badge">SQL</span>
+                    <span class="tool-badge">Forecasting</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                    <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
+                </div>
+            </div>
+            
+            <!-- Existing Project 2 -->
+            <div class="project-card" data-category="Predictive Modeling">
+                <div class="project-thumb">
+                    <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Customer Segmentation screenshot">
+                    <div class="project-overlay">
+                        <div class="project-overlay-links">
+                            <a href="#" class="overlay-link"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="#" class="overlay-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="project-title">Customer Segmentation Analysis</h3>
+                <p class="project-desc">
+                    Used clustering algorithms to segment customers into distinct groups for targeted marketing campaigns. I performed feature engineering and implemented the K-means algorithm.
+                </p>
+                <div class="project-metrics">↑ Campaign efficiency: +23%</div>
+                <div class="project-tools">
+                    <span class="tool-badge">Python</span>
+                    <span class="tool-badge">K-means</span>
+                    <span class="tool-badge">Scikit-learn</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Case Study</a>
+                    <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
+                </div>
+            </div>
+            
+            <!-- Existing Project 3 -->
+            <div class="project-card" data-category="Predictive Modeling">
+                <div class="project-thumb">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Churn Prediction screenshot">
+                    <div class="project-overlay">
+                        <div class="project-overlay-links">
+                            <a href="#" class="overlay-link"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="#" class="overlay-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="project-title">Customer Churn Prediction</h3>
+                <p class="project-desc">
+                    Built a machine learning model to predict customer churn with 92% accuracy, helping reduce churn by 15%. I implemented XGBoost and handled class imbalance.
+                </p>
+                <div class="project-metrics">↓ Churn reduction: -15%</div>
+                <div class="project-tools">
+                    <span class="tool-badge">Python</span>
+                    <span class="tool-badge">Random Forest</span>
+                    <span class="tool-badge">XGBoost</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Case Study</a>
+                    <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
+                </div>
+            </div>
+            
+            <!-- NEW BANK ANALYTICS PROJECT -->
+            <div class="project-card" data-category="Business Intelligence">
+                <div class="project-thumb">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Bank Analytics Dashboard">
+                    <div class="project-overlay">
+                        <div class="project-overlay-links">
+                            <a href="#" class="overlay-link"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="#" class="overlay-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="project-title">Bank Analytics & Loan Performance Dashboard</h3>
+                <p class="project-desc">
+                    Comprehensive financial analytics dashboard analyzing loan performance, customer risk profiles, 
+                    and transaction patterns across East African markets. Identified key risk factors and optimized 
+                    lending strategies through data-driven insights.
+                </p>
+                <div class="project-metrics">↓ Default rate reduction: -15%</div>
+                <div class="project-tools">
+                    <span class="tool-badge">SQL</span>
+                    <span class="tool-badge">Power BI</span>
+                    <span class="tool-badge">Python</span>
+                    <span class="tool-badge">Statistical Analysis</span>
+                    <span class="tool-badge">Risk Modeling</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Dashboard</a>
+                    <a href="#" class="project-link"><i class="fab fa-github"></i> Analysis Code</a>
                 </div>
             </div>
         </div>
-        <h3 class="project-title">Bank Analytics & Loan Performance Dashboard</h3>
-        <p class="project-desc">
-            Comprehensive financial analytics dashboard analyzing loan performance, customer risk profiles, 
-            and transaction patterns across Kenya, Tanzania, and Uganda. Identified key risk factors leading 
-            to 15% reduction in default rates through data-driven lending strategies.
-        </p>
-        <div class="project-metrics">↓ Default rate reduction: -15%</div>
-        <div class="project-tools">
-            <span class="tool-badge">SQL</span>
-            <span class="tool-badge">Power BI</span>
-            <span class="tool-badge">Python</span>
-            <span class="tool-badge">Statistical Analysis</span>
-            <span class="tool-badge">Risk Modeling</span>
-        </div>
-        <div class="project-links">
-            <a href="https://app.powerbi.com/your-dashboard" class="project-link" target="_blank">
-                <i class="fas fa-external-link-alt"></i> Live Dashboard
-            </a>
-            <a href="https://github.com/langat01/bank-analytics" class="project-link" target="_blank">
-                <i class="fab fa-github"></i> Analysis Code
-            </a>
-        </div>
+        <a href="#" class="btn see-more-btn">See All Projects</a>
     </div>
-</div>
+</section>
