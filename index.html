@@ -41,6 +41,45 @@
             padding: 0 20px;
         }
 
+        /* Running Text Animation */
+        .running-text-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: rgba(100, 255, 218, 0.1);
+            backdrop-filter: blur(5px);
+            z-index: 1001;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.2);
+        }
+
+        .running-text {
+            display: inline-block;
+            white-space: nowrap;
+            animation: runText 25s linear infinite;
+            font-size: 0.9rem;
+            color: #64ffda;
+            font-weight: 500;
+            padding-left: 100%;
+        }
+
+        .running-text span {
+            margin: 0 30px;
+        }
+
+        @keyframes runText {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
         /* Navigation - Appears on scroll */
         .navbar {
             position: fixed;
@@ -55,7 +94,7 @@
         }
 
         .navbar.visible {
-            top: 0;
+            top: 40px; /* Account for running text */
         }
 
         .nav-content {
@@ -133,7 +172,7 @@
             align-items: center;
             position: relative;
             overflow: hidden;
-            padding-top: 100px;
+            padding-top: 140px; /* Account for running text + navbar */
         }
 
         .hero-bg {
@@ -417,7 +456,7 @@
             font-size: 1.05rem;
         }
 
-        /* Education & Certifications Section */
+        /* Education & Certifications Section with Animation */
         .education {
             padding: 100px 0;
             background: rgba(5, 15, 30, 0.5);
@@ -437,10 +476,19 @@
             box-shadow: var(--shadow);
             border: 1px solid var(--glass-border);
             transition: var(--transition);
+            transform: translateY(50px);
+            opacity: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .education-card.visible {
+            transform: translateY(0);
+            opacity: 1;
         }
 
         .education-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) scale(1.02);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
@@ -492,6 +540,114 @@
             font-size: 0.9rem;
             margin-top: 15px;
             border: 1px solid rgba(100, 255, 218, 0.2);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .cert-badge:hover {
+            background: rgba(100, 255, 218, 0.2);
+            transform: scale(1.05);
+        }
+
+        /* Certification Modal */
+        .cert-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .cert-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .cert-modal-content {
+            background: rgba(10, 25, 47, 0.95);
+            border-radius: 15px;
+            width: 90%;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            transform: translateY(30px);
+            transition: transform 0.4s ease;
+        }
+
+        .cert-modal.active .cert-modal-content {
+            transform: translateY(0);
+        }
+
+        .cert-modal-header {
+            padding: 25px;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cert-modal-header h3 {
+            color: #64ffda;
+            font-size: 1.5rem;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: #8892b0;
+            font-size: 24px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            color: #64ffda;
+            transform: rotate(90deg);
+        }
+
+        .cert-modal-body {
+            padding: 25px;
+        }
+
+        .cert-details {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+        }
+
+        .cert-image {
+            background: rgba(100, 255, 218, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            border: 2px dashed rgba(100, 255, 218, 0.3);
+        }
+
+        .cert-image i {
+            font-size: 80px;
+            color: #64ffda;
+        }
+
+        .cert-info h4 {
+            color: #ccd6f6;
+            margin-bottom: 15px;
+        }
+
+        .cert-info p {
+            color: #a8b2d1;
+            margin-bottom: 10px;
         }
 
         /* Experience Section */
@@ -549,7 +705,7 @@
             font-size: 1rem;
         }
 
-        /* Projects Section */
+        /* Projects Section with Enhanced Animation */
         .projects {
             padding: 100px 0;
         }
@@ -568,11 +724,34 @@
             box-shadow: var(--shadow);
             border: 1px solid var(--glass-border);
             transition: var(--transition);
+            transform: scale(0.95);
+            opacity: 0;
+            animation: projectCardEntrance 0.6s ease forwards;
+        }
+
+        .project-card.visible {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        @keyframes projectCardEntrance {
+            0% {
+                transform: scale(0.95) translateY(30px);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
         }
 
         .project-card:hover {
-            transform: translateY(-15px);
+            transform: translateY(-15px) scale(1.02);
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-card:hover .project-img:before {
+            transform: translateX(100%);
         }
 
         .project-img {
@@ -599,19 +778,26 @@
             transition: transform 0.6s ease;
         }
 
-        .project-card:hover .project-img:before {
-            transform: translateX(100%);
-        }
-
         .project-content {
             padding: 30px;
+        }
+
+        .project-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #ccd6f6;
+        }
+
+        .project-content p {
+            color: #a8b2d1;
+            margin-bottom: 20px;
         }
 
         .project-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-            margin-top: 20px;
+            margin-bottom: 25px;
         }
 
         .tag {
@@ -621,6 +807,168 @@
             border-radius: 20px;
             font-size: 0.85rem;
             border: 1px solid rgba(100, 255, 218, 0.2);
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .project-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(100, 255, 218, 0.1);
+            color: #64ffda;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+        }
+
+        .project-btn:hover {
+            background: rgba(100, 255, 218, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Project Modal */
+        .project-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .project-modal-content {
+            background: rgba(10, 25, 47, 0.95);
+            border-radius: 15px;
+            width: 90%;
+            max-width: 900px;
+            max-height: 85vh;
+            overflow-y: auto;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            transform: translateY(30px);
+            transition: transform 0.4s ease;
+        }
+
+        .project-modal.active .project-modal-content {
+            transform: translateY(0);
+        }
+
+        .project-modal-header {
+            padding: 25px;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .project-modal-header h3 {
+            color: #64ffda;
+            font-size: 1.8rem;
+        }
+
+        .project-modal-body {
+            padding: 30px;
+        }
+
+        .project-modal-tabs {
+            display: flex;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+            margin-bottom: 25px;
+        }
+
+        .project-tab {
+            padding: 12px 25px;
+            background: none;
+            border: none;
+            color: #8892b0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .project-tab.active {
+            color: #64ffda;
+        }
+
+        .project-tab.active:after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #64ffda;
+        }
+
+        .project-tab:hover:not(.active) {
+            color: #ccd6f6;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .code-preview {
+            background: rgba(5, 15, 30, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            color: #a8b2d1;
+            margin-bottom: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .report-content {
+            background: rgba(5, 15, 30, 0.8);
+            border-radius: 10px;
+            padding: 25px;
+            color: #a8b2d1;
+        }
+
+        .report-content h4 {
+            color: #64ffda;
+            margin-bottom: 15px;
+        }
+
+        .report-content ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .report-content li {
+            margin-bottom: 10px;
         }
 
         /* Contact Section */
@@ -888,6 +1236,10 @@
             .resume-btn {
                 margin-left: 0;
             }
+
+            .cert-details {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 768px) {
@@ -912,10 +1264,34 @@
                 width: 100%;
                 text-align: center;
             }
+
+            .project-actions {
+                flex-direction: column;
+            }
+
+            .project-btn {
+                justify-content: center;
+            }
+
+            .navbar.visible {
+                top: 0;
+            }
+
+            .hero {
+                padding-top: 100px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Running Text Animation -->
+    <div class="running-text-container">
+        <div class="running-text">
+            <span>🚀 Data Scientist | 🤖 Machine Learning Engineer | 📊 Data Analyst | 📈 AI Specialist | 💻 Python Developer | 🧠 Deep Learning | 🔍 Computer Vision | 📝 Natural Language Processing | ⚡ FastAPI | 🐳 Docker | ☁️ AWS | 🔥 PyTorch | 🎯 TensorFlow | 📉 Tableau | 💾 SQL | 📡 Apache Spark | 📚 Research | 🏆 98% Model Accuracy</span>
+            <span>🚀 Data Scientist | 🤖 Machine Learning Engineer | 📊 Data Analyst | 📈 AI Specialist | 💻 Python Developer | 🧠 Deep Learning | 🔍 Computer Vision | 📝 Natural Language Processing | ⚡ FastAPI | 🐳 Docker | ☁️ AWS | 🔥 PyTorch | 🎯 TensorFlow | 📉 Tableau | 💾 SQL | 📡 Apache Spark | 📚 Research | 🏆 98% Model Accuracy</span>
+        </div>
+    </div>
+
     <!-- Navigation - Appears on scroll -->
     <nav class="navbar" id="navbar">
         <div class="container">
@@ -1041,14 +1417,14 @@
         </div>
     </section>
 
-    <!-- Education & Certifications Section -->
+    <!-- Education & Certifications Section with Animation -->
     <section class="education" id="education">
         <div class="container">
             <h2 class="section-title fade-in">Education & Certifications</h2>
             <p class="section-subtitle fade-in">My academic background and professional certifications in data science</p>
             
             <div class="education-grid">
-                <div class="education-card fade-in">
+                <div class="education-card fade-in" data-cert-id="1">
                     <div class="education-icon">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
@@ -1056,10 +1432,10 @@
                     <h3>MSc Data Science</h3>
                     <h4>University of Nairobi</h4>
                     <p>Specialized in Machine Learning, Statistical Analysis, and Big Data Technologies. Graduated with Distinction.</p>
-                    <div class="cert-badge">GPA: 3.9/4.0</div>
+                    <div class="cert-badge" data-cert-id="1">View Certificate</div>
                 </div>
                 
-                <div class="education-card fade-in">
+                <div class="education-card fade-in" data-cert-id="2">
                     <div class="education-icon">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
@@ -1067,10 +1443,10 @@
                     <h3>BSc Computer Science</h3>
                     <h4>Kenyatta University</h4>
                     <p>Major in Artificial Intelligence and Data Mining. Received Dean's Honors for Academic Excellence.</p>
-                    <div class="cert-badge">First Class Honors</div>
+                    <div class="cert-badge" data-cert-id="2">View Certificate</div>
                 </div>
                 
-                <div class="education-card fade-in">
+                <div class="education-card fade-in" data-cert-id="3">
                     <div class="education-icon">
                         <i class="fas fa-certificate"></i>
                     </div>
@@ -1078,10 +1454,10 @@
                     <h3>Google Data Analytics Certificate</h3>
                     <h4>Google Career Certificates</h4>
                     <p>Professional certification covering the entire data analysis process including data cleaning, analysis, visualization, and R programming.</p>
-                    <div class="cert-badge">Credential ID: ABC123XYZ</div>
+                    <div class="cert-badge" data-cert-id="3">View Certificate</div>
                 </div>
                 
-                <div class="education-card fade-in">
+                <div class="education-card fade-in" data-cert-id="4">
                     <div class="education-icon">
                         <i class="fas fa-certificate"></i>
                     </div>
@@ -1089,11 +1465,37 @@
                     <h3>Azure Data Scientist Associate</h3>
                     <h4>Microsoft</h4>
                     <p>Certification demonstrating expertise in implementing machine learning models on Azure and managing data science workflows.</p>
-                    <div class="cert-badge">Credential ID: DP-100</div>
+                    <div class="cert-badge" data-cert-id="4">View Certificate</div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Certification Modal -->
+    <div class="cert-modal" id="certModal">
+        <div class="cert-modal-content">
+            <div class="cert-modal-header">
+                <h3 id="certModalTitle">Certificate Details</h3>
+                <button class="close-modal" id="closeCertModal">&times;</button>
+            </div>
+            <div class="cert-modal-body">
+                <div class="cert-details">
+                    <div class="cert-image">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="cert-info">
+                        <h4 id="certName">Certificate Name</h4>
+                        <p><strong>Issuing Organization:</strong> <span id="certOrg">Organization Name</span></p>
+                        <p><strong>Issue Date:</strong> <span id="certDate">Month Year</span></p>
+                        <p><strong>Credential ID:</strong> <span id="certId">ABC123XYZ</span></p>
+                        <p><strong>Credential URL:</strong> <a href="#" id="certUrl" class="contact-link" target="_blank">View on issuer's website</a></p>
+                        <p><strong>Skills:</strong> <span id="certSkills">Data Analysis, Machine Learning, Statistics</span></p>
+                        <p id="certDescription">Detailed description of the certification and what it represents.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Experience Section -->
     <section class="experience" id="experience">
@@ -1126,14 +1528,14 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- Projects Section with Enhanced Animation -->
     <section class="projects" id="projects">
         <div class="container">
             <h2 class="section-title fade-in">Data Science Projects</h2>
             <p class="section-subtitle fade-in">Real-world applications of data science and machine learning</p>
             
             <div class="projects-grid">
-                <div class="project-card fade-in">
+                <div class="project-card fade-in" data-project-id="1">
                     <div class="project-img">
                         <i class="fas fa-heartbeat"></i>
                     </div>
@@ -1145,11 +1547,23 @@
                             <span class="tag">Scikit-learn</span>
                             <span class="tag">TensorFlow</span>
                             <span class="tag">Tableau</span>
+                            <span class="tag">SQL</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="#" class="project-btn view-project" data-project-id="1">
+                                <i class="fas fa-eye"></i> View Details
+                            </a>
+                            <a href="https://github.com/weldonlangat/healthcare-analytics" class="project-btn" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="#" class="project-btn view-report" data-project-id="1">
+                                <i class="fas fa-chart-bar"></i> Report
+                            </a>
                         </div>
                     </div>
                 </div>
                 
-                <div class="project-card fade-in">
+                <div class="project-card fade-in" data-project-id="2">
                     <div class="project-img">
                         <i class="fas fa-shopping-cart"></i>
                     </div>
@@ -1161,11 +1575,23 @@
                             <span class="tag">PySpark</span>
                             <span class="tag">Apache Kafka</span>
                             <span class="tag">AWS</span>
+                            <span class="tag">Docker</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="#" class="project-btn view-project" data-project-id="2">
+                                <i class="fas fa-eye"></i> View Details
+                            </a>
+                            <a href="https://github.com/weldonlangat/recommendation-system" class="project-btn" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="#" class="project-btn view-report" data-project-id="2">
+                                <i class="fas fa-chart-bar"></i> Report
+                            </a>
                         </div>
                     </div>
                 </div>
                 
-                <div class="project-card fade-in">
+                <div class="project-card fade-in" data-project-id="3">
                     <div class="project-img">
                         <i class="fas fa-chart-bar"></i>
                     </div>
@@ -1177,12 +1603,135 @@
                             <span class="tag">XGBoost</span>
                             <span class="tag">FastAPI</span>
                             <span class="tag">Docker</span>
+                            <span class="tag">PostgreSQL</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="#" class="project-btn view-project" data-project-id="3">
+                                <i class="fas fa-eye"></i> View Details
+                            </a>
+                            <a href="https://github.com/weldonlangat/fraud-detection" class="project-btn" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="#" class="project-btn view-report" data-project-id="3">
+                                <i class="fas fa-chart-bar"></i> Report
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Project Modal -->
+    <div class="project-modal" id="projectModal">
+        <div class="project-modal-content">
+            <div class="project-modal-header">
+                <h3 id="projectModalTitle">Project Details</h3>
+                <button class="close-modal" id="closeProjectModal">&times;</button>
+            </div>
+            <div class="project-modal-body">
+                <div class="project-modal-tabs">
+                    <button class="project-tab active" data-tab="overview">Overview</button>
+                    <button class="project-tab" data-tab="code">Code</button>
+                    <button class="project-tab" data-tab="report">Report</button>
+                    <button class="project-tab" data-tab="demo">Demo</button>
+                </div>
+                
+                <div id="overviewTab" class="tab-content active">
+                    <h4>Project Overview</h4>
+                    <p id="projectOverview">Project overview will be displayed here.</p>
+                    <h4>Technologies Used</h4>
+                    <div id="projectTech" class="project-tags"></div>
+                    <h4>Key Features</h4>
+                    <ul id="projectFeatures"></ul>
+                </div>
+                
+                <div id="codeTab" class="tab-content">
+                    <h4>Code Preview</h4>
+                    <div class="code-preview">
+                        <pre id="projectCode"># Code preview will be displayed here
+# Example Python code for data preprocessing
+
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+
+def load_and_preprocess_data(filepath):
+    """Load and preprocess dataset"""
+    df = pd.read_csv(filepath)
+    
+    # Handle missing values
+    df.fillna(method='ffill', inplace=True)
+    
+    # Feature engineering
+    df['feature_engineered'] = df['feature1'] * df['feature2']
+    
+    # Split features and target
+    X = df.drop('target', axis=1)
+    y = df['target']
+    
+    # Train-test split
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42
+    )
+    
+    # Scale features
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_test_scaled = scaler.transform(X_test)
+    
+    return X_train_scaled, X_test_scaled, y_train, y_test
+
+# Model training example
+from sklearn.ensemble import RandomForestClassifier
+
+def train_model(X_train, y_train):
+    """Train machine learning model"""
+    model = RandomForestClassifier(
+        n_estimators=100,
+        max_depth=10,
+        random_state=42
+    )
+    model.fit(X_train, y_train)
+    return model</pre>
+                    </div>
+                    <a href="#" id="projectGitHubLink" class="project-btn" target="_blank" style="width: 100%; text-align: center;">
+                        <i class="fab fa-github"></i> View Full Code on GitHub
+                    </a>
+                </div>
+                
+                <div id="reportTab" class="tab-content">
+                    <div class="report-content">
+                        <h4>Project Report</h4>
+                        <p id="projectReportSummary">Project report summary will be displayed here.</p>
+                        
+                        <h4>Key Metrics</h4>
+                        <ul id="projectMetrics"></ul>
+                        
+                        <h4>Results & Impact</h4>
+                        <p id="projectImpact">Project impact will be displayed here.</p>
+                        
+                        <h4>Challenges & Solutions</h4>
+                        <ul id="projectChallenges"></ul>
+                    </div>
+                </div>
+                
+                <div id="demoTab" class="tab-content">
+                    <h4>Project Demo</h4>
+                    <p>This project includes an interactive demo. You can:</p>
+                    <ul>
+                        <li><a href="#" id="liveDemoLink" class="contact-link" target="_blank">View Live Demo</a></li>
+                        <li><a href="#" id="demoVideoLink" class="contact-link" target="_blank">Watch Demo Video</a></li>
+                        <li><a href="#" id="demoNotebookLink" class="contact-link" target="_blank">Explore Jupyter Notebook</a></li>
+                    </ul>
+                    <div style="margin-top: 20px; padding: 20px; background: rgba(5, 15, 30, 0.8); border-radius: 10px;">
+                        <p><strong>Note:</strong> Demo access may require authentication or may be available upon request for proprietary projects.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Contact Section -->
     <section class="contact" id="contact">
@@ -1330,6 +1879,13 @@
     </footer>
 
     <script>
+        // Running text animation
+        const runningText = document.querySelector('.running-text');
+        
+        // Duplicate text for seamless animation
+        const originalText = runningText.innerHTML;
+        runningText.innerHTML = originalText + originalText;
+        
         // Navigation appear on scroll
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
@@ -1340,10 +1896,13 @@
             }
         });
 
-        // Scroll animations for elements
+        // Enhanced scroll animations for elements
         const fadeElements = document.querySelectorAll('.fade-in');
+        const educationCards = document.querySelectorAll('.education-card');
+        const projectCards = document.querySelectorAll('.project-card');
         
-        const fadeInOnScroll = function() {
+        const checkVisibility = function() {
+            // For fade-in elements
             for (let i = 0; i < fadeElements.length; i++) {
                 const element = fadeElements[i];
                 const elementTop = element.getBoundingClientRect().top;
@@ -1353,11 +1912,37 @@
                     element.classList.add('visible');
                 }
             }
+            
+            // For education cards with staggered animation
+            educationCards.forEach((card, index) => {
+                const cardTop = card.getBoundingClientRect().top;
+                const cardVisible = 100;
+                
+                if (cardTop < window.innerHeight - cardVisible) {
+                    // Add delay based on index for staggered effect
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                    }, index * 200);
+                }
+            });
+            
+            // For project cards with staggered animation
+            projectCards.forEach((card, index) => {
+                const cardTop = card.getBoundingClientRect().top;
+                const cardVisible = 100;
+                
+                if (cardTop < window.innerHeight - cardVisible) {
+                    // Add delay based on index for staggered effect
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                    }, index * 150);
+                }
+            });
         };
 
-        window.addEventListener('scroll', fadeInOnScroll);
+        window.addEventListener('scroll', checkVisibility);
         // Initial check in case elements are already in view
-        fadeInOnScroll();
+        checkVisibility();
 
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1370,7 +1955,7 @@
                 const targetElement = document.querySelector(targetId);
                 if(targetElement) {
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80,
+                        top: targetElement.offsetTop - 100,
                         behavior: 'smooth'
                     });
                 }
@@ -1379,7 +1964,6 @@
 
         // Resume Download Functionality
         function downloadResume() {
-            // Create a simple PDF-like content (in a real scenario, this would link to an actual PDF file)
             const resumeContent = `
                 WELDON LANGAT - DATA SCIENTIST
                 =================================
@@ -1497,6 +2081,309 @@
             
             // Reset form
             document.getElementById('contactForm').reset();
+        });
+
+        // Certification Modal Functionality
+        const certModal = document.getElementById('certModal');
+        const closeCertModal = document.getElementById('closeCertModal');
+        const certBadges = document.querySelectorAll('.cert-badge');
+        
+        // Certification data
+        const certifications = {
+            1: {
+                name: "MSc Data Science",
+                org: "University of Nairobi",
+                date: "June 2024",
+                id: "UNAI-2024-MSC-DS",
+                url: "https://credentials.universityofnairobi.ac.ke/verify/UNAI-2024-MSC-DS",
+                skills: "Machine Learning, Statistical Analysis, Big Data, Python, R, SQL",
+                description: "Master of Science in Data Science with specialization in Machine Learning and Big Data Technologies. This degree program covered advanced topics in statistical modeling, machine learning algorithms, data mining, and distributed computing systems."
+            },
+            2: {
+                name: "BSc Computer Science",
+                org: "Kenyatta University",
+                date: "December 2021",
+                id: "KU-CS-2021-BSC",
+                url: "https://credentials.ku.ac.ke/verify/KU-CS-2021-BSC",
+                skills: "Artificial Intelligence, Data Mining, Algorithms, Software Engineering",
+                description: "Bachelor of Science in Computer Science with major in Artificial Intelligence and Data Mining. This program provided a strong foundation in computer science principles with specialized courses in AI, machine learning, and data analytics."
+            },
+            3: {
+                name: "Google Data Analytics Certificate",
+                org: "Google Career Certificates",
+                date: "August 2023",
+                id: "G-DAC-7890123",
+                url: "https://www.coursera.org/account/accomplishments/professional-cert/ABC123XYZ",
+                skills: "Data Cleaning, Analysis, Visualization, R Programming, SQL, Tableau",
+                description: "Professional certification covering the end-to-end data analysis process. This certificate validates skills in data cleaning, analysis, visualization, and using R programming for statistical analysis. It includes hands-on projects with real-world datasets."
+            },
+            4: {
+                name: "Azure Data Scientist Associate",
+                org: "Microsoft",
+                date: "November 2022",
+                id: "DP-100",
+                url: "https://learn.microsoft.com/en-us/users/weldonlangat-1234/credentials/dp100",
+                skills: "Azure Machine Learning, ML Operations, Model Deployment, Cloud AI",
+                description: "Microsoft Certified: Azure Data Scientist Associate certification. This credential demonstrates the ability to design and implement a data science solution on Azure using machine learning and deep learning techniques."
+            }
+        };
+        
+        // Open certification modal
+        certBadges.forEach(badge => {
+            badge.addEventListener('click', function() {
+                const certId = this.getAttribute('data-cert-id');
+                const cert = certifications[certId];
+                
+                if (cert) {
+                    document.getElementById('certName').textContent = cert.name;
+                    document.getElementById('certOrg').textContent = cert.org;
+                    document.getElementById('certDate').textContent = cert.date;
+                    document.getElementById('certId').textContent = cert.id;
+                    document.getElementById('certUrl').href = cert.url;
+                    document.getElementById('certSkills').textContent = cert.skills;
+                    document.getElementById('certDescription').textContent = cert.description;
+                    document.getElementById('certModalTitle').textContent = cert.name;
+                    
+                    certModal.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                }
+            });
+        });
+        
+        // Close certification modal
+        closeCertModal.addEventListener('click', function() {
+            certModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Close modal when clicking outside
+        certModal.addEventListener('click', function(e) {
+            if (e.target === certModal) {
+                certModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Project Modal Functionality
+        const projectModal = document.getElementById('projectModal');
+        const closeProjectModal = document.getElementById('closeProjectModal');
+        const viewProjectButtons = document.querySelectorAll('.view-project');
+        const viewReportButtons = document.querySelectorAll('.view-report');
+        const projectTabs = document.querySelectorAll('.project-tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        // Project data
+        const projects = {
+            1: {
+                title: "Healthcare Predictive Analytics",
+                overview: "This project involved developing a machine learning model to predict patient readmission risks within 30 days of discharge. The model helps hospitals identify high-risk patients and allocate resources more effectively, ultimately reducing readmission rates and healthcare costs.",
+                tech: ['Python', 'Scikit-learn', 'TensorFlow', 'Tableau', 'SQL', 'Pandas', 'NumPy'],
+                features: [
+                    "98% accuracy in predicting patient readmission risks",
+                    "Integration with hospital EHR systems",
+                    "Real-time risk scoring dashboard",
+                    "Explainable AI features for clinician trust",
+                    "Automated retraining pipeline"
+                ],
+                github: "https://github.com/weldonlangat/healthcare-analytics",
+                reportSummary: "The healthcare predictive analytics project successfully reduced readmission rates by 18% at pilot hospitals, resulting in estimated annual savings of $2.3M. The model achieved 98% accuracy with a precision-recall AUC of 0.96.",
+                metrics: [
+                    "Model Accuracy: 98%",
+                    "Precision-Recall AUC: 0.96",
+                    "Reduction in Readmission Rates: 18%",
+                    "Cost Savings: $2.3M annually",
+                    "Processing Time: < 5 seconds per prediction"
+                ],
+                impact: "The implementation of this predictive model allowed hospitals to proactively manage high-risk patients, reducing emergency readmissions and improving patient outcomes. The dashboard provided clinicians with actionable insights that improved patient care coordination.",
+                challenges: [
+                    "Data privacy and HIPAA compliance requirements",
+                    "Imbalanced dataset with only 8% readmission cases",
+                    "Integration with legacy hospital systems",
+                    "Ensuring model interpretability for medical staff"
+                ],
+                liveDemo: "https://healthcare-demo.weldonlangat.com",
+                demoVideo: "https://youtube.com/watch?v=healthcare-demo",
+                demoNotebook: "https://colab.research.google.com/drive/healthcare-notebook"
+            },
+            2: {
+                title: "E-commerce Recommendation System",
+                overview: "A personalized product recommendation engine built using collaborative filtering and deep learning techniques. The system analyzes user behavior, purchase history, and product attributes to deliver personalized recommendations that increase engagement and sales.",
+                tech: ['Python', 'PySpark', 'Apache Kafka', 'AWS', 'Docker', 'TensorFlow', 'FastAPI'],
+                features: [
+                    "Real-time recommendation engine with < 100ms latency",
+                    "Hybrid approach combining collaborative and content-based filtering",
+                    "A/B testing framework for algorithm evaluation",
+                    "Scalable architecture handling 1M+ daily users",
+                    "Personalized ranking based on user preferences"
+                ],
+                github: "https://github.com/weldonlangat/recommendation-system",
+                reportSummary: "The recommendation system increased average order value by 15% and conversion rates by 25% for the e-commerce platform. User engagement metrics showed a 40% increase in time spent on site and a 30% reduction in bounce rate.",
+                metrics: [
+                    "Conversion Rate Increase: 25%",
+                    "Average Order Value Increase: 15%",
+                    "Click-Through Rate: 8.5%",
+                    "Latency: < 100ms",
+                    "User Engagement Increase: 40%"
+                ],
+                impact: "The recommendation engine transformed the shopping experience, leading to significant revenue growth and improved customer satisfaction. The system now serves over 1 million daily active users with personalized product suggestions.",
+                challenges: [
+                    "Cold start problem for new users and products",
+                    "Scalability to handle peak traffic during sales events",
+                    "Real-time processing of user interaction data",
+                    "Balancing exploration vs exploitation in recommendations"
+                ],
+                liveDemo: "https://recommendations-demo.weldonlangat.com",
+                demoVideo: "https://youtube.com/watch?v=recommendations-demo",
+                demoNotebook: "https://colab.research.google.com/drive/recommendations-notebook"
+            },
+            3: {
+                title: "Financial Fraud Detection System",
+                overview: "A real-time fraud detection system that uses machine learning to identify fraudulent transactions in banking systems. The model analyzes transaction patterns, user behavior, and contextual data to flag suspicious activities with high precision.",
+                tech: ['Python', 'XGBoost', 'FastAPI', 'Docker', 'PostgreSQL', 'Kafka', 'Redis'],
+                features: [
+                    "Real-time fraud detection with 99.5% precision",
+                    "Adaptive learning from new fraud patterns",
+                    "Multi-layer risk scoring system",
+                    "Integration with banking transaction APIs",
+                    "Comprehensive fraud investigation dashboard"
+                ],
+                github: "https://github.com/weldonlangat/fraud-detection",
+                reportSummary: "The fraud detection system successfully identified fraudulent transactions with 99.5% precision, reducing false positives by 60% compared to the previous rule-based system. This resulted in annual savings of $4.7M in prevented fraud.",
+                metrics: [
+                    "Precision: 99.5%",
+                    "Recall: 92%",
+                    "False Positive Reduction: 60%",
+                    "Annual Fraud Prevention: $4.7M",
+                    "Processing Speed: < 50ms per transaction"
+                ],
+                impact: "The system significantly improved fraud detection capabilities while reducing customer friction from false positives. The adaptive learning component continuously improved performance as new fraud patterns emerged.",
+                challenges: [
+                    "Extremely imbalanced dataset (< 0.1% fraud cases)",
+                    "Requirement for real-time processing with low latency",
+                    "Adapting to evolving fraud techniques",
+                    "Balancing security with customer experience"
+                ],
+                liveDemo: "https://fraud-demo.weldonlangat.com",
+                demoVideo: "https://youtube.com/watch?v=fraud-demo",
+                demoNotebook: "https://colab.research.google.com/drive/fraud-notebook"
+            }
+        };
+        
+        // Open project modal
+        function openProjectModal(projectId) {
+            const project = projects[projectId];
+            
+            if (project) {
+                // Set modal content
+                document.getElementById('projectModalTitle').textContent = project.title;
+                document.getElementById('projectOverview').textContent = project.overview;
+                document.getElementById('projectReportSummary').textContent = project.reportSummary;
+                document.getElementById('projectImpact').textContent = project.impact;
+                document.getElementById('projectGitHubLink').href = project.github;
+                document.getElementById('liveDemoLink').href = project.liveDemo;
+                document.getElementById('demoVideoLink').href = project.demoVideo;
+                document.getElementById('demoNotebookLink').href = project.demoNotebook;
+                
+                // Set technologies
+                const techContainer = document.getElementById('projectTech');
+                techContainer.innerHTML = '';
+                project.tech.forEach(tech => {
+                    const tag = document.createElement('span');
+                    tag.className = 'tag';
+                    tag.textContent = tech;
+                    techContainer.appendChild(tag);
+                });
+                
+                // Set features
+                const featuresContainer = document.getElementById('projectFeatures');
+                featuresContainer.innerHTML = '';
+                project.features.forEach(feature => {
+                    const li = document.createElement('li');
+                    li.textContent = feature;
+                    featuresContainer.appendChild(li);
+                });
+                
+                // Set metrics
+                const metricsContainer = document.getElementById('projectMetrics');
+                metricsContainer.innerHTML = '';
+                project.metrics.forEach(metric => {
+                    const li = document.createElement('li');
+                    li.textContent = metric;
+                    metricsContainer.appendChild(li);
+                });
+                
+                // Set challenges
+                const challengesContainer = document.getElementById('projectChallenges');
+                challengesContainer.innerHTML = '';
+                project.challenges.forEach(challenge => {
+                    const li = document.createElement('li');
+                    li.textContent = challenge;
+                    challengesContainer.appendChild(li);
+                });
+                
+                // Show modal
+                projectModal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                
+                // Reset to overview tab
+                switchTab('overview');
+            }
+        }
+        
+        // View project buttons
+        viewProjectButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const projectId = this.getAttribute('data-project-id');
+                openProjectModal(projectId);
+            });
+        });
+        
+        // View report buttons
+        viewReportButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const projectId = this.getAttribute('data-project-id');
+                openProjectModal(projectId);
+                
+                // Switch to report tab after a short delay
+                setTimeout(() => {
+                    switchTab('report');
+                }, 300);
+            });
+        });
+        
+        // Close project modal
+        closeProjectModal.addEventListener('click', function() {
+            projectModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Close modal when clicking outside
+        projectModal.addEventListener('click', function(e) {
+            if (e.target === projectModal) {
+                projectModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Tab switching functionality
+        function switchTab(tabName) {
+            // Remove active class from all tabs and contents
+            projectTabs.forEach(tab => tab.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Add active class to selected tab and content
+            document.querySelector(`.project-tab[data-tab="${tabName}"]`).classList.add('active');
+            document.getElementById(`${tabName}Tab`).classList.add('active');
+        }
+        
+        // Add click event to tabs
+        projectTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabName = this.getAttribute('data-tab');
+                switchTab(tabName);
+            });
         });
 
         // Add some interactive effects to stat cards
