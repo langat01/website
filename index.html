@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weldon Langat - Data Scientist</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary: #2563eb;
             --primary-dark: #1d4ed8;
             --secondary: #0f172a;
             --accent: #06b6d4;
+            --teal: #64ffda;
             --light: #f8fafc;
             --gray: #64748b;
             --dark: #1e293b;
@@ -29,7 +29,7 @@
         }
 
         body {
-            background-color: white;
+            background-color: #0a192f;
             color: #e6f1ff;
             line-height: 1.6;
             overflow-x: hidden;
@@ -105,6 +105,27 @@
             width: 100%;
         }
 
+        /* Resume Download Button */
+        .resume-btn {
+            background: transparent;
+            color: #64ffda;
+            padding: 10px 25px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: 2px solid #64ffda;
+            text-decoration: none;
+            margin-left: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .resume-btn:hover {
+            background: rgba(100, 255, 218, 0.1);
+            transform: translateY(-3px);
+        }
+
         /* Hero Section with transparent glass effect */
         .hero {
             min-height: 100vh;
@@ -167,6 +188,12 @@
             max-width: 550px;
         }
 
+        .btn-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
         .btn {
             display: inline-block;
             background: transparent;
@@ -202,6 +229,10 @@
             color: #0a192f;
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(100, 255, 218, 0.2);
+        }
+
+        .btn-primary {
+            background: rgba(100, 255, 218, 0.1);
         }
 
         .hero-image {
@@ -386,6 +417,83 @@
             font-size: 1.05rem;
         }
 
+        /* Education & Certifications Section */
+        .education {
+            padding: 100px 0;
+            background: rgba(5, 15, 30, 0.5);
+        }
+
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .education-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 35px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--glass-border);
+            transition: var(--transition);
+        }
+
+        .education-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .education-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(100, 255, 218, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            color: #64ffda;
+            font-size: 24px;
+            border: 2px solid rgba(100, 255, 218, 0.3);
+        }
+
+        .education-date {
+            color: #64ffda;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .education-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #ccd6f6;
+        }
+
+        .education-card h4 {
+            color: #8892b0;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .education-card p {
+            color: #a8b2d1;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .cert-badge {
+            display: inline-block;
+            background: rgba(100, 255, 218, 0.1);
+            color: #64ffda;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+        }
+
         /* Experience Section */
         .experience {
             padding: 100px 0;
@@ -515,11 +623,125 @@
             border: 1px solid rgba(100, 255, 218, 0.2);
         }
 
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: rgba(5, 15, 30, 0.7);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+
+        .contact-info {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--glass-border);
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: #ccd6f6;
+        }
+
+        .contact-details {
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(100, 255, 218, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: #64ffda;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .contact-text h4 {
+            color: #ccd6f6;
+            margin-bottom: 5px;
+        }
+
+        .contact-text p {
+            color: #a8b2d1;
+        }
+
+        .contact-link {
+            color: #64ffda;
+            text-decoration: none;
+            transition: var(--transition);
+            display: block;
+            margin-top: 5px;
+        }
+
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+
+        .contact-form {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--glass-border);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: #ccd6f6;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            border-radius: 8px;
+            color: #e6f1ff;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #64ffda;
+            box-shadow: 0 0 0 3px rgba(100, 255, 218, 0.1);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
         /* Footer */
         footer {
             background: rgba(5, 15, 30, 0.95);
             padding: 70px 0 30px;
-            margin-top: 100px;
             border-top: 1px solid rgba(100, 255, 218, 0.1);
         }
 
@@ -622,17 +844,6 @@
             }
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         /* Scroll animations */
         .fade-in {
             opacity: 0;
@@ -669,13 +880,17 @@
                 width: calc(100% - 70px);
                 margin-left: 70px !important;
             }
-        }
 
-        @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
             
+            .resume-btn {
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
             .section-title {
                 font-size: 2rem;
             }
@@ -686,6 +901,16 @@
             
             .stat-number {
                 font-size: 2.8rem;
+            }
+
+            .btn-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
             }
         }
     </style>
@@ -702,8 +927,12 @@
                     <a href="#services">Services</a>
                     <a href="#projects">Projects</a>
                     <a href="#experience">Experience</a>
+                    <a href="#education">Education</a>
                     <a href="#contact">Contact</a>
                 </div>
+                <a href="#resume" class="resume-btn" id="downloadResume">
+                    <i class="fas fa-download"></i> Resume
+                </a>
             </div>
         </div>
     </nav>
@@ -718,7 +947,12 @@
                     <h1>Weldon Langat</h1>
                     <h2>Data Scientist & AI Specialist</h2>
                     <p>I transform complex data into actionable insights, build predictive models, and develop AI solutions that drive business growth and innovation across industries.</p>
-                    <a href="#contact" class="btn">Get In Touch</a>
+                    <div class="btn-container">
+                        <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                        <a href="#resume" class="btn" id="heroResumeBtn">
+                            <i class="fas fa-download"></i> Download Resume
+                        </a>
+                    </div>
                 </div>
                 <div class="hero-image">
                     <div class="profile-card">
@@ -731,6 +965,7 @@
                             <span class="tag" style="margin: 0 5px;">Python</span>
                             <span class="tag" style="margin: 0 5px;">ML</span>
                             <span class="tag" style="margin: 0 5px;">AI</span>
+                            <span class="tag" style="margin: 0 5px;">Data Analytics</span>
                         </div>
                     </div>
                 </div>
@@ -801,6 +1036,60 @@
                     </div>
                     <h3>Data Pipeline Engineering</h3>
                     <p>I design and implement robust data pipelines that efficiently collect, process, and transform data for analytics and machine learning applications at scale.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Certifications Section -->
+    <section class="education" id="education">
+        <div class="container">
+            <h2 class="section-title fade-in">Education & Certifications</h2>
+            <p class="section-subtitle fade-in">My academic background and professional certifications in data science</p>
+            
+            <div class="education-grid">
+                <div class="education-card fade-in">
+                    <div class="education-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="education-date">2021 - 2024</div>
+                    <h3>MSc Data Science</h3>
+                    <h4>University of Nairobi</h4>
+                    <p>Specialized in Machine Learning, Statistical Analysis, and Big Data Technologies. Graduated with Distinction.</p>
+                    <div class="cert-badge">GPA: 3.9/4.0</div>
+                </div>
+                
+                <div class="education-card fade-in">
+                    <div class="education-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="education-date">2017 - 2021</div>
+                    <h3>BSc Computer Science</h3>
+                    <h4>Kenyatta University</h4>
+                    <p>Major in Artificial Intelligence and Data Mining. Received Dean's Honors for Academic Excellence.</p>
+                    <div class="cert-badge">First Class Honors</div>
+                </div>
+                
+                <div class="education-card fade-in">
+                    <div class="education-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="education-date">2023</div>
+                    <h3>Google Data Analytics Certificate</h3>
+                    <h4>Google Career Certificates</h4>
+                    <p>Professional certification covering the entire data analysis process including data cleaning, analysis, visualization, and R programming.</p>
+                    <div class="cert-badge">Credential ID: ABC123XYZ</div>
+                </div>
+                
+                <div class="education-card fade-in">
+                    <div class="education-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="education-date">2022</div>
+                    <h3>Azure Data Scientist Associate</h3>
+                    <h4>Microsoft</h4>
+                    <p>Certification demonstrating expertise in implementing machine learning models on Azure and managing data science workflows.</p>
+                    <div class="cert-badge">Credential ID: DP-100</div>
                 </div>
             </div>
         </div>
@@ -896,7 +1185,100 @@
     </section>
 
     <!-- Contact Section -->
-    <footer id="contact">
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title fade-in">Get In Touch</h2>
+            <p class="section-subtitle fade-in">Let's discuss how data science can solve your business challenges</p>
+            
+            <div class="contact-content">
+                <div class="contact-info fade-in">
+                    <h3>Contact Information</h3>
+                    <p style="color: #a8b2d1; margin-bottom: 30px;">Feel free to reach out for collaborations, opportunities, or just to say hello!</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <a href="mailto:weldon.langat@example.com" class="contact-link">weldon.langat@example.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Phone</h4>
+                                <a href="tel:+254700000000" class="contact-link">+254 700 000 000</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Location</h4>
+                                <p>Nairobi, Kenya</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Availability</h4>
+                                <p>Available for freelance projects and full-time opportunities</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links" style="margin-top: 40px;">
+                        <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="Kaggle"><i class="fab fa-kaggle"></i></a>
+                    </div>
+                </div>
+                
+                <div class="contact-form fade-in">
+                    <h3>Send Me a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" class="form-control" placeholder="What is this regarding?" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" class="form-control" placeholder="Your message here..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn" style="width: 100%;">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
         <div class="container">
             <div class="footer-content">
                 <div>
@@ -993,6 +1375,128 @@
                     });
                 }
             });
+        });
+
+        // Resume Download Functionality
+        function downloadResume() {
+            // Create a simple PDF-like content (in a real scenario, this would link to an actual PDF file)
+            const resumeContent = `
+                WELDON LANGAT - DATA SCIENTIST
+                =================================
+                
+                CONTACT INFORMATION
+                --------------------
+                Email: weldon.langat@example.com
+                Phone: +254 700 000 000
+                Location: Nairobi, Kenya
+                LinkedIn: linkedin.com/in/weldonlangat
+                GitHub: github.com/weldonlangat
+                
+                SUMMARY
+                -------
+                Data Scientist with 4+ years of experience in building predictive models, 
+                implementing machine learning solutions, and extracting insights from complex 
+                datasets. Specialized in Python, machine learning, data visualization, and 
+                cloud technologies.
+                
+                EDUCATION
+                ---------
+                MSc Data Science | University of Nairobi (2021-2024)
+                - Specialized in Machine Learning, Statistical Analysis
+                - Graduated with Distinction (GPA: 3.9/4.0)
+                
+                BSc Computer Science | Kenyatta University (2017-2021)
+                - Major in Artificial Intelligence and Data Mining
+                - First Class Honors
+                
+                CERTIFICATIONS
+                --------------
+                • Google Data Analytics Certificate (2023)
+                • Microsoft Azure Data Scientist Associate (2022)
+                • AWS Certified Machine Learning Specialist (2022)
+                
+                EXPERIENCE
+                ----------
+                Senior Data Scientist | DataInsight Solutions (2025-Present)
+                - Lead machine learning initiatives for client projects
+                - Developed predictive models for financial forecasting
+                - Mentored junior data scientists
+                
+                Data Scientist | TechAnalytics Inc. (2022-2025)
+                - Built recommendation systems for e-commerce clients
+                - Implemented NLP pipelines for healthcare applications
+                - Improved operational efficiency by 30%
+                
+                Data Science Intern | AI Research Lab (2024)
+                - Researched novel ML algorithms for time series forecasting
+                - Published research paper on anomaly detection
+                
+                TECHNICAL SKILLS
+                ----------------
+                • Programming: Python, R, SQL, Java
+                • Machine Learning: Scikit-learn, TensorFlow, PyTorch, XGBoost
+                • Data Visualization: Tableau, Power BI, Matplotlib, Seaborn
+                • Big Data: Apache Spark, Hadoop, Kafka
+                • Cloud Platforms: AWS, Azure, Google Cloud
+                • Databases: PostgreSQL, MongoDB, MySQL
+                
+                PROJECTS
+                --------
+                Healthcare Predictive Analytics (98% accuracy)
+                - ML model predicting patient readmission risks
+                - Reduced hospital costs by 15%
+                
+                E-commerce Recommendation System
+                - Increased sales by 25% for online retailer
+                - Collaborative filtering implementation
+                
+                Financial Fraud Detection System
+                - 99.5% precision in identifying fraudulent transactions
+                - Reduced false positives by 60%
+            `;
+            
+            // Create a blob and download link
+            const blob = new Blob([resumeContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Weldon_Langat_Resume.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            // Show confirmation
+            alert('Resume download started! In a real implementation, this would download a PDF file.');
+        }
+
+        // Attach resume download functionality to buttons
+        document.getElementById('downloadResume').addEventListener('click', function(e) {
+            e.preventDefault();
+            downloadResume();
+        });
+        
+        document.getElementById('heroResumeBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            downloadResume();
+        });
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // In a real implementation, you would send this data to a server
+            // For now, just show a success message
+            alert(`Thank you, ${name}! Your message has been sent. I'll get back to you at ${email} as soon as possible.`);
+            
+            // Reset form
+            document.getElementById('contactForm').reset();
         });
 
         // Add some interactive effects to stat cards
